@@ -2,11 +2,11 @@
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
-import { Alert } from '../components/ui/alert'
-import { Input } from '../components/ui/input'
-import { Label } from '../components/ui/label'
-import { Button } from '../components/ui/button'
-import GoogleButton from '../components/GoogleButton'
+import { Alert } from '../../components/ui/alert'
+import { Input } from '../../components/ui/input'
+import { Label } from '../../components/ui/label'
+import { Button } from '../../components/ui/button'
+import GoogleButton from '../../components/GoogleButton'
 
 export const Form = () => {
   const router = useRouter()
