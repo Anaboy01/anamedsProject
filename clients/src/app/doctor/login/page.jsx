@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Form } from "./form";
-import Nav from "../components/Nav";
+import Nav from "../../components/Nav";
 import Inter from '../../../public/userinter.svg'
 
 export default function page() {
