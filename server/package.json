@@ -9,7 +9,21 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "cryptr": "^6.3.0",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongoose": "^8.5.4"
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.4",
+    "nodemailer": "^6.9.14",
+    "nodemailer-express-handlebars": "^6.1.2",
+    "nodemailer-handlebars": "^1.0.1",
+    "nodemon": "^3.1.4",
+    "ua-parser-js": "^1.0.38",
+    "uuid": "^10.0.0"
   }
 }
