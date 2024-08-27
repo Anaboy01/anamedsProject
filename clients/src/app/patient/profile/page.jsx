@@ -48,7 +48,7 @@ const page = () => {
             />
           </div>
 
-          <div className='flex flex-col text-black gap-12'>
+          <div className='flex flex-col text-black gap-4'>
 
             <div className="flex w-full items-center gap-1.5 capitalize">
               <div>
