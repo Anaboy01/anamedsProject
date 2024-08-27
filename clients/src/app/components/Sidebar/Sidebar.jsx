@@ -11,11 +11,11 @@ import Image from "next/image";
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
   const pathname = usePathname();
-  const isActive = (path) => {
-    pathname === path
-      ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg "
-      : "text-white";
-  }
+  // const isActive = (path) => {
+  //   pathname === path
+  //     ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg "
+  //     : "text-white";
+  // }
 
   const svg = (
     <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,8 +77,8 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
           <p>Menu</p>
         </div>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center ${pathname === '/dashboard' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
-          href="/dashboard"
+          className={`flex gap-[10px] p-3 mt-3 items-center ${pathname === '/patient/dashboard' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
+          href="/patient/dashboard"
         >
           <MdBarChart size={25} /> <p className="text-[14px]">Dashboard</p>
         </Link>

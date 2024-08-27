@@ -71,7 +71,7 @@ export const Form = () => {
         <Button className="w-full" size="lg">
           Login
         </Button>
-        <GoogleButton />
+        <div className='block'> <GoogleButton /></div>
       </div>
     </form>
   )
