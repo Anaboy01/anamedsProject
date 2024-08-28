@@ -1,4 +1,6 @@
+"use client";
 import { forwardRef } from 'react';
+
 import { FaCalendarAlt } from 'react-icons/fa';
 
 const CustomInput = forwardRef(({ value, onClick }, ref) => (
