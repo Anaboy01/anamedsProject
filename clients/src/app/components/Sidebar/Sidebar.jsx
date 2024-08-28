@@ -91,8 +91,8 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
 
         {/* </AdminLink> */}
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center text-white ${pathname === '/records' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
-          href="/records"
+          className={`flex gap-[10px] p-3 mt-3 items-center text-white ${pathname === '/patient/records' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
+          href="/patient/records"
         >
           <GrDocumentText size={25} color="red" />{" "}
           <p className="text-[17px]">View records</p>

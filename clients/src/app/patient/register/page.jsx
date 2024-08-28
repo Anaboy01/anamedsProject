@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Form } from "./form";
 import Nav from "../../components/Nav";
-import Inter from '../../../public/userinter.svg'
-import Oval from '../../../public/oval.svg'
+import Inter from '../../../../public/userinter.svg'
+import Oval from '../../../../public/oval.svg'
 
 export default function page() {
   return (
