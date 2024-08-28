@@ -27,12 +27,6 @@ body {
   background: rgb(var(--background-rgb));
 }
 
-.oval{
-  background: url(/oval.png) no-repeat center;
-  background-size: 60%;
-  
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
