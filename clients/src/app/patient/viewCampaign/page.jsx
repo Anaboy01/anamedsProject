@@ -89,7 +89,7 @@ const page = () => {
               </h3>
               <div className="w-[360px] h-auto p-5  border-[1px] rounded-[8px] bg-[#FFFFFF] border-[#00000066]">
                 <article className="text-wrap ...">
-                  <p className="text-[#1C1C1C] text-[17px]">joe</p>
+                  <p className="text-[#1C1C1C] text-[17px]"></p>
                 </article>
               </div>
             </div>
@@ -109,28 +109,33 @@ const page = () => {
             </div>
           </div>
 
-          <div>
-            <h3 className="text-[14px] font-[700] leading-[16.45px] text-[#1C1C1">
-              Fund
+          <div className="flex flex-col gap-[20px]">
+            <h3 className="text-[14px] leading-[16.45px] font-medium text-[#454545]">
+              FUND
             </h3>
             <div className="flex flex-col items-center  justify-center w-[343px] h-[390px] rounded-[20px] bg-[#FFFFFF] p-10 ">
               <div className=" flex flex-col  gap-[20px] w-[306px] h-[359px] ">
-                
-                  <h4 className="text-[18px] font-[600] leading-[21.15px] text-[#1C1C1C] text-center">
-                    Fund campaign
-                  </h4>
-             
+                <h4 className="text-[18px] font-[600] leading-[21.15px] text-[#1C1C1C] text-center">
+                  Fund campaign
+                </h4>
+
                 <div className="w-[306px] h-[65px] p-5  border-[1px] rounded-[8px] bg-[#FFFFFF] border-[#00000066]">
                   <p className="text-[#1C1C1C] text-[17px]">0.0015Eth</p>
                 </div>
 
-                <div className="w-[306px] h-[151px] gap-[6px]">
-                <h4 className="text-[16px] font-[600] leading-[19.5px] text-[#3D3D3D]">Fund patients in need - make a difference now!</h4>
-                <p className="text-[14px] text-[#888888] leading-[21px]">Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                <div className="w-[306px] h-[151px] flex flex-col gap-[6px]">
+                  <h4 className="text-[16px] font-[600] leading-[19.5px] text-[#3D3D3D]">
+                    Fund patients in need - make a difference now!
+                  </h4>
+                  <p className="text-[14px] text-[#888888] leading-[21px]">
+                    Fund patients in need and make a difference today! Your
+                    support provides essential medical care to those who can't
+                    afford it. Join us in making a positive impact.
+                  </p>
                 </div>
 
                 <button className="w-[306px] h-[47px] p-[10px] gap-[10px] rounded-[20px] bg-[#2AA0CD] text-[#F5F5F5] text-[16px] leading-[19.36px]">
-                Fund campaign
+                  Fund campaign
                 </button>
               </div>
             </div>
