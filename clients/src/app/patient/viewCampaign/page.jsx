@@ -28,6 +28,7 @@ const page = () => {
           </div>
 
           <div className="flex flex-col gap-[12px]">
+            {/* <div className="w-[327px] h-[140px] gap-2"> */}
             <div className="flex flex-col w-[140px] h-[101px] rounded-[20px] border-[2px] border-[#BDBDBD]">
               <div className="bg-[#F9F6F9]  rounded-t-[20px] rounded-r[20px]  w-full h-[48px] flex items-center justify-center">
                 <h3 className="text-[#3D3D3D] text-[20px] font-[500px] leading-[24.33px]">
@@ -46,8 +47,8 @@ const page = () => {
                   0.0
                 </h3>
               </div>
-              <div className="bg-[#EBDFEB]  rounded-b-[20px]  w-full h-[49px] flex items-center justify-center">
-                <h3 className="text-[#3D3D3D] text-[20px] font-[500px] leading-[24.33px]">
+              <div className="bg-[#EBDFEB]  rounded-b-[20px]  w-full h-[49px] flex items-center justify-center px-2">
+                <h3 className="text-[#3D3D3D] text-[18px] text-center font-[500px] leading-[24.33px]">
                   Raised of 0.5
                 </h3>
               </div>
@@ -66,6 +67,7 @@ const page = () => {
             </div>
           </div>
         </div>
+        {/* </div> */}
 
         <div className="flex flex-row justify-between">
           <div className="flex flex-col gap-[20px] w-[343px] h-[426px] ">
@@ -115,22 +117,28 @@ const page = () => {
             </h3>
             <div className="flex flex-col items-center  justify-center w-[343px] h-[390px] rounded-[20px] bg-[#FFFFFF] p-10 ">
               <div className=" flex flex-col  gap-[20px] w-[306px] h-[359px] ">
-                
-                  <h4 className="text-[18px] font-[600] leading-[21.15px] text-[#1C1C1C] text-center">
-                    Fund campaign
-                  </h4>
-             
+                <h4 className="text-[18px] font-[600] leading-[21.15px] text-[#1C1C1C] text-center">
+                  Fund campaign
+                </h4>
+
                 <div className="w-[306px] h-[65px] p-5  border-[1px] rounded-[8px] bg-[#FFFFFF] border-[#00000066]">
                   <p className="text-[#1C1C1C] text-[17px]">0.0015Eth</p>
                 </div>
 
                 <div className="w-[306px] h-[151px] gap-[6px]">
-                <h4 className="text-[16px] font-[600] leading-[19.5px] text-[#3D3D3D]">Fund patients in need - make a difference now!</h4>
-                <p className="text-[14px] text-[#888888] leading-[21px]">Qorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                  <h4 className="text-[16px] font-[600] leading-[19.5px] text-[#3D3D3D]">
+                    Fund patients in need - make a difference now!
+                  </h4>
+                  <p className="text-[14px] text-[#888888] leading-[21px]">
+                    Qorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nunc vulputate libero et velit interdum, ac aliquet odio
+                    mattis. Class aptent taciti sociosqu ad litora torquent per
+                    conubia nostra, per inceptos himenaeos.
+                  </p>
                 </div>
 
                 <button className="w-[306px] h-[47px] p-[10px] gap-[10px] rounded-[20px] bg-[#2AA0CD] text-[#F5F5F5] text-[16px] leading-[19.36px]">
-                Fund campaign
+                  Fund campaign
                 </button>
               </div>
             </div>
