@@ -45,7 +45,7 @@ export const Form = () => {
   return (
     <form onSubmit={onSubmit} className="space-y-10 w-full sm:w-[400px]">
       <div className="grid w-full items-center gap-1.5">
-        <Label htmlFor="email">email address</Label>
+        <Label htmlFor="email" className="text-[14px] text-[#1C1C1C]">email address</Label>
         <Input
           className="w-full"
           required
@@ -56,7 +56,7 @@ export const Form = () => {
         />
       </div>
       <div className="grid w-full items-center gap-1.5">
-        <Label htmlFor="password">Password</Label>
+        <Label htmlFor="password" className="text-[14px] text-[#1C1C1C]">Password</Label>
         <Input
           className="w-full "
           required
@@ -68,7 +68,7 @@ export const Form = () => {
       </div>
       {error && <Alert>{error}</Alert>}
       <div className="w-full">
-        <Button className="w-full" size="lg">
+        <Button className="w-full rounded-[20px] font-inter" size="lg">
           Login
         </Button>
         <div className='block'> <GoogleButton /></div>
