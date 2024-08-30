@@ -6,6 +6,7 @@ import { Alert } from '../../components/ui/alert'
 import { Input } from '../../components/ui/input'
 import { Label } from '../../components/ui/label'
 import { Button } from '../../components/ui/button'
+import { FormField } from '@/app/components/ui/formField'
 import GoogleButton from '../../components/GoogleButton'
 
 export const Form = () => {
@@ -70,7 +71,7 @@ export const Form = () => {
   return (
     <form onSubmit={onSubmit} className="space-y-8 w-full sm:w-[400px]">
       <div className="flex w-full items-center gap-1.5 capitalize">
-        <div>
+        <FormField className="items-start">
           <Label htmlFor="firstName">First Name</Label>
           <Input
             className="w-full"
@@ -80,8 +81,8 @@ export const Form = () => {
             id="firstName"
             type="text"
           />
-        </div>
-        <div>
+        </FormField>
+        <FormField className="items-start">
           <Label htmlFor="lastName">Last Name</Label>
           <Input
             className="w-full"
@@ -91,9 +92,9 @@ export const Form = () => {
             id="lastName"
             type="text"
           />
-        </div>
+        </FormField>
       </div>
-      <div className="grid w-full items-center gap-1.5 capitalize">
+      <FormField className="grid w-full items-center gap-1.5 capitalize">
         <Label htmlFor="email">email address</Label>
         <Input
           className="w-full"
@@ -104,8 +105,8 @@ export const Form = () => {
           type="email"
         />
         {emailError && <div className="text-red-500 text-sm">{emailError}</div>}
-      </div>
-      <div className="grid w-full items-center gap-1.5">
+      </FormField>
+      <FormField className="grid w-full items-center gap-1.5">
         <Label htmlFor="password">Password</Label>
         <Input
           className="w-full"
@@ -115,8 +116,8 @@ export const Form = () => {
           id="password"
           type="password"
         />
-      </div>
-      <div className="grid w-full items-center gap-1.5">
+      </FormField>
+      <FormField className="grid w-full items-center gap-1.5">
         <Label htmlFor="confirmPassword">Confirm Password</Label>
         <Input
           className="w-full"
@@ -127,7 +128,7 @@ export const Form = () => {
           type="password"
         />
         {passwordError && <div className="text-red-500 text-sm">{passwordError}</div>}
-      </div>
+      </FormField>
       {error && <Alert>{error}</Alert>}
       <div className="w-full">
         <Button className="w-full" size="lg">

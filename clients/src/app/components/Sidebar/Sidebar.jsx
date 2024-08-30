@@ -6,6 +6,7 @@ import { GrDocumentText } from "react-icons/gr";
 import { usePathname } from "next/navigation";
 import { IoMdSettings } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
+import { FaPeopleGroup } from "react-icons/fa6";
 import Logo from '../../../../public/anameds.svg'
 import Image from "next/image";
 
@@ -58,11 +59,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
       <div className="fixed inset-0 md:relative md:w-1/5 bg-[#2AA0CD] p-4 flex flex-col space-y-2 z-20 border-r border-t font-inter">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-[20px] my-3">
-            <Image
-              src={Logo}
-              width={200}
-              alt="Anameds Logo"
-            />
+            <Image src={Logo} width={200} alt="Anameds Logo" />
             <div>
               {/* <p className="text-[18px]">
                 {profile.firstName} {profile.lastName}
@@ -73,65 +70,64 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
             </div>
           </div>
         </div>
-        <div className="text-[12px] font-normal">
+        <div className="text-[12px] font-normal text-[#F5F5F5]">
           <p>Menu</p>
         </div>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center ${pathname === '/patient/dashboard' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
+            pathname === "/patient/dashboard"
+              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+          }`}
           href="/patient/dashboard"
         >
           <MdBarChart size={25} /> <p className="text-[14px]">Dashboard</p>
         </Link>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center ${pathname === '/campaign' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
+            pathname === "/campaign"
+              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+          }`}
           href="/campaign"
         >
-          <BsCartDash size={25} /> <p className="text-[14px]">Campaign</p>
+          <FaPeopleGroup size={25} /> <p className="text-[14px]">Campaign</p>
         </Link>
-
-        {/* </AdminLink> */}
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center text-white ${pathname === '/patient/records' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
+            pathname === "/patient/records"
+              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+          }`}
           href="/patient/records"
         >
-          <GrDocumentText size={25}  />{" "}
-          <p className="text-[14px]">View records</p>
+          <GrDocumentText size={25} /> <p className="text-[14px]">View records</p>
         </Link>
 
-        <div className="text-[12px] font-normal">
+        <div className="text-[12px] font-normal text-[#F5F5F5]">
           <p>Other</p>
         </div>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center ${pathname === '/setting' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
+            pathname === "/setting"
+              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+          }`}
           href="/setting"
         >
           <IoMdSettings size={25} /> <p className="text-[14px]">Settings</p>
         </Link>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center ${pathname === '/logout' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
+            pathname === "/logout"
+              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+          }`}
           href="/logout"
         >
           <FaArrowLeft size={25} /> <p className="text-[14px]">Logout</p>
         </Link>
       </div>
-
-      {/* <div className="flex float-right">
-        <svg />
-        <div className="flex ">
-          <img
-            src={profile.photo}
-            alt=""
-            style={{ width: "50px", height: "50px", borderRadius: "50%" }}
-            loading="lazy"
-          />
-          <p className="text-[18px]">
-            {profile.firstName} {profile.lastName}
-          </p>
-          <p className="text-[18px] text-neutral-400">
-            {profile.profession}
-          </p>
-        </div>
-      </div> */}
     </>
   );
 };

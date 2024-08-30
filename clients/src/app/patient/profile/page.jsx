@@ -42,9 +42,10 @@ const page = () => {
           <div>
             <Image
               src={Profile}
-              width={162}
-              height={189}
+              width={202}
+              height={230}
               alt={'Muhammed Musa'}
+             
             />
           </div>
 

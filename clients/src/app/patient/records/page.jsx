@@ -93,7 +93,7 @@ const Page = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row min-h-screen text-[#3D3D3D] montserrat-font">
+    <div className="flex flex-col md:flex-row min-h-screen text-[#3D3D3D] font-montserrat ">
       <style jsx>{`
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
         .montserrat-font {
@@ -175,27 +175,27 @@ const Page = () => {
       </tr>
     </thead>
     <tbody>
-      <tr>
+      <tr className="cursor-pointer">
         <td className="border border-gray-300 p-2">Covid</td>
         <td className="border border-gray-300 p-2">1</td>
         <td className="border border-gray-300 p-2">10/1/2023</td>
       </tr>
-      <tr>
+      <tr className="cursor-pointer">
         <td className="border border-gray-300 p-2">2nd trimester</td>
         <td className="border border-gray-300 p-2">2</td>
         <td className="border border-gray-300 p-2">10/2/2023</td>
       </tr>
-      <tr>
+      <tr className="cursor-pointer">
         <td className="border border-gray-300 p-2">Burn</td>
         <td className="border border-gray-300 p-2">3</td>
         <td className="border border-gray-300 p-2">10/3/2023</td>
       </tr>
-      <tr>
+      <tr className="cursor-pointer">
         <td className="border border-gray-300 p-2">Pregnancy</td>
         <td className="border border-gray-300 p-2">4</td>
         <td className="border border-gray-300 p-2">10/4/2023</td>
       </tr>
-      <tr>
+      <tr className="cursor-pointer">
         <td className="border border-gray-300 p-2">Urinary tract infection</td>
         <td className="border border-gray-300 p-2">5</td>
         <td className="border border-gray-300 p-2">10/5/2023</td>

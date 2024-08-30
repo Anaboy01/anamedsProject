@@ -6,6 +6,7 @@ import { Alert } from '../../components/ui/alert'
 import { Input } from '../../components/ui/input'
 import { Label } from '../../components/ui/label'
 import { Button } from '../../components/ui/button'
+import { FormField } from '@/app/components/ui/formField'
 import GoogleButton from '../../components/GoogleButton'
 
 export const Form = () => {
@@ -43,32 +44,32 @@ export const Form = () => {
   if (loading) return <p>loading</p>
 
   return (
-    <form onSubmit={onSubmit} className="space-y-10 w-full sm:w-[400px]">
-      <div className="grid w-full items-center gap-1.5">
-        <Label htmlFor="email">email address</Label>
+    <form onSubmit={onSubmit} className="space-y-10 w-full sm:w-[400px] font-mavenPro">
+      <FormField className="grid w-full items-center gap-[9px]">
+        <Label htmlFor="email" className="text-[14px] uppercase" >email address</Label>
         <Input
-          className="w-full"
+          className="w-full py-[24px] px-[20px]"
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           id="email"
           type="email"
         />
-      </div>
-      <div className="grid w-full items-center gap-1.5">
-        <Label htmlFor="password">Password</Label>
+      </FormField>
+      <FormField className="grid w-full items-center gap-1.5">
+        <Label htmlFor="password" className="text-[14px] uppercase">Password</Label>
         <Input
-          className="w-full"
+          className="w-full py-[24px] px-[20px]"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           id="password"
           type="password"
         />
-      </div>
+      </FormField>
       {error && <Alert>{error}</Alert>}
       <div className="w-full">
-        <Button className="w-full" size="lg">
+        <Button className="w-full rounded-[20px]" size="lg">
           Login
         </Button>
         <div className='block'> <GoogleButton /></div>
