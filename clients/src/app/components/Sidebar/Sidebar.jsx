@@ -55,7 +55,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
 
   return (
     <>
-      <div className="fixed inset-0 md:relative md:w-1/5 bg-[#2AA0CD] p-4 flex flex-col space-y-2 z-20 border-r border-t">
+      <div className="fixed inset-0 md:relative md:w-1/5 bg-[#2AA0CD] p-4 flex flex-col space-y-2 z-20 border-r border-t font-inter">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-[20px] my-3">
             <Image
@@ -73,7 +73,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
             </div>
           </div>
         </div>
-        <div className="text-lg">
+        <div className="text-[12px] font-normal">
           <p>Menu</p>
         </div>
         <Link
@@ -94,11 +94,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
           className={`flex gap-[10px] p-3 mt-3 items-center text-white ${pathname === '/patient/records' ? 'text-[#2AA0CD] bg-[#C2E5F5] rounded-lg' : 'text-white'}`}
           href="/patient/records"
         >
-          <GrDocumentText size={25} color="red" />{" "}
-          <p className="text-[17px]">View records</p>
+          <GrDocumentText size={25}  />{" "}
+          <p className="text-[14px]">View records</p>
         </Link>
 
-        <div className="text-lg">
+        <div className="text-[12px] font-normal">
           <p>Other</p>
         </div>
         <Link
