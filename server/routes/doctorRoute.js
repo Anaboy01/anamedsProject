@@ -6,7 +6,7 @@ const { registerDoctor, loginDoctor, logoutDoctor, getDoctor, getAllDoctors, get
 const doctorRouter = express.Router()
 
 
-doctorRouter.post('/registerDoctor',hospitalProtect, registerDoctor)
+
 doctorRouter.post('/loginDoctor', loginDoctor)
 doctorRouter.post('/sendLoginCode/:email', sendLoginCode)
 doctorRouter.post('/loginWithCode/:email', loginWithCode),

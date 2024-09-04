@@ -832,10 +832,10 @@ const accessPatientDataWithCode = asyncHandler(async (req, res) => {
           doctorName,
           hospitalId: hospital._id,
           hospitalName: hospital.name,
-          date: currentTimestamp, // You can set the date to the current timestamp
-          createdAt: currentTimestamp, // Include createdAt timestamp
-          updatedAt: currentTimestamp, // Include updatedAt timestamp
-          ...req.body, // Assuming patientFileData is in the request body
+          date: currentTimestamp, 
+          createdAt: currentTimestamp, 
+          updatedAt: currentTimestamp, 
+          ...req.body, 
         };
     
         // Add the new patient file to the patient's list of files

@@ -33,3 +33,5 @@ patientRouter.get('/getPatientFilesByHospitalId/:email',hospitalProtect, getPati
 patientRouter.get('/getPatientFilesByDoctorId/:email',doctorProtect, getPatientFilesByDoctorId);
 
 module.exports = patientRouter
+
+// 

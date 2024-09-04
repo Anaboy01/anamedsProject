@@ -3,6 +3,7 @@ const express = require('express');
 
 const {registerHospital, loginHospital, logoutHospital, getHospital, updateHospital, deleteHospital, getAllHospitals, sendAutomatedEmail, forgotPassword, resetPassword, sendLoginCode, changePassword, loginWithCode, hospitalLoginStatus} = require('../controllers/hospitalController');
 const { hospitalProtect, hospitalAdminOnly } = require('../middleware/authMiddleware');
+const { registerDoctor } = require('../controllers/doctorController');
 const hospitalRouter = express.Router()
 
 hospitalRouter.post('/registerHospital', registerHospital)
@@ -22,6 +23,8 @@ hospitalRouter.patch('/resetPassword/:resetToken', resetPassword)
 hospitalRouter.patch('/changePassword',hospitalProtect, changePassword)
 hospitalRouter.post('/sendLoginCode/:email', sendLoginCode)
 hospitalRouter.post('/loginWithCode/:email', loginWithCode)
+
+hospitalRouter.post('/registerDoctor',hospitalProtect, registerDoctor)
 
 
 
