@@ -39,7 +39,7 @@ const doctorSchema = new mongoose.Schema({
   },
   hospitalId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Hospital', // Reference to the hospital model
+      ref: 'Hospital', 
       required: true,
     },
   doctorAgent: {
