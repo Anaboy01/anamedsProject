@@ -1,7 +1,7 @@
 const express = require('express');
 const { doctorProtect, doctorAdminOnly, hospitalProtect } = require('../middleware/authMiddleware');
 const { registerDoctor, loginDoctor, logoutDoctor, getDoctor, getAllDoctors, getDoctorsByHospitalId, getDoctorByEmailAndHospitalId, updateDoctor, loginWithCode, deleteDoctor, changeDoctorStatus, loginStatus, sendLoginCode, forgotPassword, resetPassword, changePassword } = require('../controllers/doctorController');
-const { addPatientFile } = require('../controllers/patientController');
+const { addPatientFile, requestAccessToPatientData, accessPatientDataWithCode } = require('../controllers/patientController');
 
 
 const doctorRouter = express.Router()
@@ -29,6 +29,8 @@ doctorRouter.patch('/resetPassword/:resetToken', resetPassword)
 doctorRouter.patch('/changePassword',doctorProtect, changePassword)
 
 doctorRouter.post('/addPatientFile/:email',doctorProtect, addPatientFile);
+doctorRouter.post('/requestAccessToPatientData', doctorProtect, requestAccessToPatientData )
+doctorRouter.post('/accessPatientDataWithCode/:email', accessPatientDataWithCode);
 
 
 
