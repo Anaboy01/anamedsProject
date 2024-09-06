@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Request</title>
-     <style>
+    <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Maven+Pro:wght@400..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sevillana&display=swap');
 
         *{
@@ -26,23 +26,21 @@
             padding: 20px 50px;
             display: flex;
             flex-direction: column;
-            
+            gap: 20px;
         }
         .name{
            font-size: 20px;
            font-family: "Lato"; 
            font-weight: 500;
-           padding: 20px 0px;
         }
         .thanks{
             color: #2AA0CD;
             font-size: 25px;
             font-family: "Montserrat"; 
             font-weight: 600;
-            padding-top: 50px;
         }
 
-         .code{
+        .code{
             color: #00579B;
             font-size: 20px;
         }
@@ -50,12 +48,12 @@
     </style>
 </head>
 <body>
-   <h1>ANAMeds Records Access Request</h1>
+    <h1>ANAMeds Records Access Request</h1>
    <div class="content">
-    <p class="name">Hello {{ name }},</p>
+    <p class="name">Hello Anate,</p>
     <div>
-        <p>You have received a request for access from Dr. {{ requesterName }} . They are requesting permission to access your information.</p>
-        <p>If you grant permission, please provide them with the access code: <span class="code">{{ link }}</span></p>
+        <p>You have received a request for access from Dr.Musa. They are requesting permission to access your information.</p>
+        <p>If you grant permission, please provide them with the access code: <span class="code">1234</span></p>
         
     </div>
 
@@ -63,7 +61,3 @@
    </div>
 </body>
 </html>
-
-{{!--  --}}
-{{!-- --}}
-{{!-- {{ link }} --}}
