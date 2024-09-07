@@ -293,6 +293,7 @@ const loginPatient = asyncHandler(async (req, res) => {
       role,
       photo,
       patient_file,
+      token
     });
   } else {
     res.status(500);

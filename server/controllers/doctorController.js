@@ -195,7 +195,8 @@ const loginDoctor = asyncHandler (async (req, res) => {
                   doctorAgent,
                   specialty,
                   licenseNumber,
-                  role
+                  role,
+                  token
             })
     
       } else{
