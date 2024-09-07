@@ -908,13 +908,13 @@ const addPatientFile = asyncHandler(async (req, res, next) => {
       ...req.body,
     };
 
-    // Add the new patient file to the patient's list of files
+  
     patient.patient_files.push(newPatientFile);
 
-    // Save the updated patient document
+    
     await patient.save();
 
-    return res.status(201).json(newPatientFile); // Return the newly created patient file
+    return res.status(201).json(newPatientFile); 
   } catch (error) {
     return next(error);
   }
