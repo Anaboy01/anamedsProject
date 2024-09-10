@@ -19,7 +19,7 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(
       cors({
-            origin:['http://localhost:5173', 'https://authTest.vercel.app'],
+            origin:['http://localhost:3000', 'https://authTest.vercel.app'],
             credentials:true,
       })
 )

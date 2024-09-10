@@ -1,9 +1,15 @@
 "use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Form } from "./form";
 import Nav from "../../components/Nav";
 import Inter from "../../../../public/userinter.svg";
+import { useRouter } from "next/router";
+
+
+
+
 
 export default function page() {
   return (

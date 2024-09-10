@@ -176,7 +176,6 @@ const loginHospital = asyncHandler (async (req, res) => {
           location,
           description,
           role,
-          token
         })
 
   } else{

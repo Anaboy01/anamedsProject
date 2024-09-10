@@ -1,12 +1,12 @@
 import axios from 'axios'
 
-const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL
+// const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 
 export const API_URL = `${BACKEND_URL}/api/patients/`
 
-//Validate email
 
-// Validate email
 export const validateEmail = (email) => {
       return email.match(
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -15,15 +15,13 @@ export const validateEmail = (email) => {
 
 
 //Register Patient
-
 const register = async (patientData) =>{
       const response = await axios.post(API_URL + 'registerPatient', patientData)
       return response.data
 }
+
+
 //login Patient
-
-
-
 const login = async (patientData) =>{
       const response = await axios.post(API_URL + 'loginPatient', patientData)
       return response.data

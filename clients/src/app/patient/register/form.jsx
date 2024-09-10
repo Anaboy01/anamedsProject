@@ -1,72 +1,32 @@
 'use client'
-import { signIn } from 'next-auth/react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
 import { Alert } from '../../components/ui/alert'
 import { Input } from '../../components/ui/input'
 import { Label } from '../../components/ui/label'
 import { Button } from '../../components/ui/button'
 import { FormField } from '@/app/components/ui/formField'
 import GoogleButton from '../../components/GoogleButton'
+import { FaTimes } from 'react-icons/fa'
+import { BsCheck2All } from 'react-icons/bs'
 
-export const Form = () => {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
-  const [name, setName] = useState({
-    firstName: "",
-    lastName: ""
-  })
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
-  const [emailError, setEmailError] = useState('')
-  const [passwordError, setPasswordError] = useState('')
+export const Form = ({
+  formData,
+  handleInputChange,
+  onSubmit,
+  uCase,
+  num,
+  sChar,
+  passLength,
+  error
+}) => {
+  const { firstName, lastName, email, password, password2 } = formData; // Update here
 
-  const onSubmit = async (e) => {
-    e.preventDefault()
+  console.log(formData);
 
-    // Validate password and confirm password
-    if (password !== confirmPassword) {
-      setPasswordError('Passwords do not match')
-      return
-    } else {
-      setPasswordError('')
-    }
-
-    // Validate email using a regular expression
-    const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
-    if (!emailRegex.test(email)) {
-      setEmailError('Invalid email address')
-      return
-    } else {
-      setEmailError('')
-    }
-
-    try {
-      setLoading(true)
-      const res = await signIn('credentials', {
-        redirect: false,
-        email,
-        password,
-        callbackUrl
-      })
-      console.log('Res', res)
-      if (!res?.error) {
-        router.push(callbackUrl)
-      } else {
-        setError('Invalid email or password')
-      }
-    } catch (err) {
-      console.log(err)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  if (loading) return <p>loading</p>
+  const switchIcon = (condition) => {
+    const checkIcon = <BsCheck2All color="green" size={15} />;
+    const timesIcon = <FaTimes color="red" size={15} />;
+    return condition ? checkIcon : timesIcon;
+  };
 
   return (
     <form onSubmit={onSubmit} className="space-y-8 w-full sm:w-[400px]">
@@ -76,10 +36,11 @@ export const Form = () => {
           <Input
             className="w-full"
             required
-            value={name.firstName}
-            onChange={(e) => setName({ ...name, firstName: e.target.value })}
+            value={firstName}
+            onChange={handleInputChange}
             id="firstName"
             type="text"
+            name="firstName"
           />
         </FormField>
         <FormField className="items-start">
@@ -87,24 +48,25 @@ export const Form = () => {
           <Input
             className="w-full"
             required
-            value={name.lastName}
-            onChange={(e) => setName({ ...name, lastName: e.target.value })}
+            value={lastName}
+            onChange={handleInputChange}
             id="lastName"
             type="text"
+            name="lastName"
           />
         </FormField>
       </div>
       <FormField className="grid w-full items-center gap-1.5 capitalize">
-        <Label htmlFor="email">email address</Label>
+        <Label htmlFor="email">Email Address</Label>
         <Input
           className="w-full"
           required
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleInputChange}
           id="email"
           type="email"
+          name="email"
         />
-        {emailError && <div className="text-red-500 text-sm">{emailError}</div>}
       </FormField>
       <FormField className="grid w-full items-center gap-1.5">
         <Label htmlFor="password">Password</Label>
@@ -112,30 +74,45 @@ export const Form = () => {
           className="w-full"
           required
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleInputChange}
           id="password"
           type="password"
+          name="password"
         />
       </FormField>
       <FormField className="grid w-full items-center gap-1.5">
-        <Label htmlFor="confirmPassword">Confirm Password</Label>
+        <Label htmlFor="password2">Confirm Password</Label> {/* Updated ID here */}
         <Input
           className="w-full"
           required
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          id="confirmPassword"
+          value={password2}
+          onChange={handleInputChange}
+          id="password2" 
           type="password"
+          name="password2"  
         />
-        {passwordError && <div className="text-red-500 text-sm">{passwordError}</div>}
       </FormField>
+      <div className="flex items-center text-[2px]">
+        <span className={`text-[2px] mr-1 ${uCase ? 'text-green' : 'text-red'}`}>
+          {switchIcon(uCase)}
+        </span>
+        <span className={`mr-1 text-[2px] ${num ? 'text-green' : 'text-red'}`}>
+          {switchIcon(num)}
+        </span>
+        <span className={`mr-1 text-[2px] ${sChar ? 'text-green' : 'text-red'}`}>
+          {switchIcon(sChar)}
+        </span>
+        <span className={`mr-1 text-[2px] ${passLength ? 'text-green' : 'text-red'}`}>
+          {switchIcon(passLength)}
+        </span>
+      </div>
       {error && <Alert>{error}</Alert>}
       <div className="w-full">
-        <Button className="w-full" size="lg">
-          Login
-        </Button>
-       <div className='block'> <GoogleButton /></div>
+        <button type="submit" className="w-full">Register</button>
+        <div className='block'>
+          <GoogleButton />
+        </div>
       </div>
     </form>
-  )
+  );
 }

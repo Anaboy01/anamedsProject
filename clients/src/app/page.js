@@ -3,6 +3,7 @@ import Image from "next/image";
 import Nav from "./components/Nav";
 import heroImg from '../../public/Teamwork.png'
 
+
 export default function Home() {
   return (
     <main className="h-screen justify-center items-center">

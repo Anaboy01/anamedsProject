@@ -144,17 +144,6 @@ const sendVerificationEmail = asyncHandler(async (req, res) => {
   // Construct Verification Url
   const verificationUrl = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
 
-  // Verification Email
-  // const message = `
-  //     <h2>Hello ${user.name}</h2>
-  //     <p>Please use the url below to verify your account</p>
-  //     <p>This link is valid for 24hrs</p>
-
-  //     <a href=${verificationUrl} clicktracking=off>${verificationUrl}</a>
-
-  //     <p>Regards...</p>
-  //     <p>AUTH:Z Team</p>
-  //   `;
 
   const emailName = `${patient.name.firstName} ${patient.name.lastName}`;
 
@@ -293,7 +282,6 @@ const loginPatient = asyncHandler(async (req, res) => {
       role,
       photo,
       patient_file,
-      token
     });
   } else {
     res.status(500);

@@ -29,7 +29,7 @@ patientRouter.patch('/changePassword',patientProtect, changePassword),
 patientRouter.get('/getPatientFileById/:email', getPatientFileById);
 
 patientRouter.get('/getPatientFilesByHospitalId/:email',hospitalProtect, getPatientFilesByHospitalId);
-patientRouter.get('/getPatientFilesByDoctorId/:email',doctorProtect, getPatientFilesByDoctorId);
+
 
 module.exports = patientRouter
 
