@@ -11,7 +11,7 @@ const page = () => {
       <div
         className="h-screen flex justify-center items-center text-[#1C1C1C] font-montserrat "
       >
-        <div className="w-[672px] h-[330px] flex gap-[120px] ">
+        <div className="w-[80%] flex justify-center items-center gap-[120px]">
           <div>
            <Link href="/patient/register">
            <div className="h-[276px] w-[330px] flex flex-col items-center gap-[20px] ">
@@ -19,7 +19,7 @@ const page = () => {
                 <Image className="p-2" src={regImg2} width={212.96} height={224.83} />
               </div>
             
-               <h3 className="w-[209px] h-[24px] font-[500px] text-[20px] leading-[24.38px]" > Register as a Patient</h3>
+               <h3 className="w-[209px] h-[24px] font-medium text-[20px] leading-[24.38px] " > Register as a Patient</h3>
               
             </div>
            </Link>
@@ -31,7 +31,7 @@ const page = () => {
                 <Image src={regImg1} width={212.96} height={224.83} />
               </div>
             
-               <h3 className="w-[233px] h-[24px] font-[500px] text-[20px] leading-[24.38px]" >Register as an Hospital</h3>
+               <h3 className="w-[233px] h-[24px] font-medium text-[20px] leading-[24.38px]" >Register as an Hospital</h3>
               
             </div>
           </Link>

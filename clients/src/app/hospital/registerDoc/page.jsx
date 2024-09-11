@@ -35,7 +35,7 @@ const page = () => {
 
       <div className="py-[74px] px-[69px] flex flex-col gap-[35px] w-full">
         <div className="flex flex-col gap-[6px]">
-          <h6 className="text-[#3D3D3D] font-medium text-[24px] ">
+          <h6 className="text-[#3D3D3D] font-medium text-[24px] font-montserrat ">
           Register doctor
           </h6>
           

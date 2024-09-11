@@ -36,10 +36,10 @@ const page = () => {
 
       <div className="py-[74px] px-[69px] flex flex-col gap-[35px] w-full">
         <div className="flex flex-col gap-[6px]">
-          <h6 className="text-[#3D3D3D] font-medium text-[24px] ">
+          <h6 className="text-[#3D3D3D] font-medium text-[24px] font-montserrat">
             Hi {profile.name}
           </h6>
-          <p className="text-[#888888] font-light text-[14px]">
+          <p className="text-[#888888] font-light text-[14px] font-poppins">
             Welcome to your dashboard
           </p>
         </div>
@@ -55,7 +55,7 @@ const page = () => {
               <LuUserPlus className="h-[24px] w-[24px] text-[#374957]" />
             </div>
 
-            <div className="text-center h-[49px] bg-[#C2E5F5] py-[14px] font-normal text-[15px]  rounded-br-[20px] rounded-bl-[20px]">
+            <div className="text-center h-[49px] bg-[#C2E5F5] text-[#1C1C1C] font-montserrat py-[14px] font-normal text-[15px]  rounded-br-[20px] rounded-bl-[20px]">
               Register Doctor
             </div>
           </Link>

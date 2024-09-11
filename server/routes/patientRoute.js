@@ -25,11 +25,12 @@ patientRouter.patch('/verifyPatient/:verificationToken', verifyPatient)
 patientRouter.post('/forgotPassword',forgotPassword)
 patientRouter.patch('/resetPassword/:resetToken', resetPassword)
 patientRouter.patch('/changePassword',patientProtect, changePassword),
-patientRouter.post('/requestAccessToPatientData', doctorProtect, requestAccessToPatientData )
-patientRouter.post('/accessPatientDataWithCode/:email', accessPatientDataWithCode);
+
 patientRouter.get('/getPatientFileById/:email', getPatientFileById);
-patientRouter.post('/addPatientFile/:email',doctorProtect, addPatientFile);
+
 patientRouter.get('/getPatientFilesByHospitalId/:email',hospitalProtect, getPatientFilesByHospitalId);
-patientRouter.get('/getPatientFilesByDoctorId/:email',doctorProtect, getPatientFilesByDoctorId);
+
 
 module.exports = patientRouter
+
+// 

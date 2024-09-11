@@ -65,7 +65,7 @@ const registerDoctor = asyncHandler(async (req, res) => {
             phone: phone,
           },
           doctorAgent,
-          specialty,
+          specialty: specialty,
           licenseNumber,
           hospitalId, // Set the hospitalId using the authenticated hospital's ID
           rank
@@ -195,7 +195,7 @@ const loginDoctor = asyncHandler (async (req, res) => {
                   doctorAgent,
                   specialty,
                   licenseNumber,
-                  role
+                  role,
             })
     
       } else{

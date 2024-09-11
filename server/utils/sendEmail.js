@@ -10,7 +10,8 @@ const sendEmail = async (
   reply_to,
   template,
   name,
-  link
+  link,
+  requesterName
 ) => {
   // Create Email Transporter
   const transporter = nodemailer.createTransport({
@@ -48,6 +49,7 @@ const sendEmail = async (
     context: {
       name,
       link,
+      requesterName
     },
   };
 

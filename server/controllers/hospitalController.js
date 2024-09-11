@@ -140,7 +140,7 @@ const loginHospital = asyncHandler (async (req, res) => {
         hospitalId: hospital._id,
         lToken: encryptedLoginCode,
         createdAt: Date.now(),
-        expiresAt: Date.now() + 60 * (60 * 1000), // Thirty minutes
+        expiresAt: Date.now() + 60 * (60 * 1000),
         }).save();
 
         res.status(400)
@@ -175,7 +175,7 @@ const loginHospital = asyncHandler (async (req, res) => {
           contactInfo,
           location,
           description,
-          role
+          role,
         })
 
   } else{
