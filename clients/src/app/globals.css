@@ -21,6 +21,7 @@
 *{
   margin: 0;
   padding: 0;
+  /* color: #f3e7e7; */
   /* overflow: auto; */
 }
 
@@ -34,6 +35,15 @@ body {
   background-size: 60%;
   
 } */
+
+.navCon{
+/* From https://css.glass */
+background: #2a9fcd35;
+border-radius: 20px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6.5px);
+-webkit-backdrop-filter: blur(6.5px);
+}
 
 @layer utilities {
   .text-balance {

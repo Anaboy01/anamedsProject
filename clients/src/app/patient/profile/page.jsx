@@ -6,6 +6,8 @@ import Profile from '../../../../public/Frame 79.png'
 import { Label } from '@/app/components/ui/label'
 import { Input } from '@/app/components/ui/input'
 import { Button } from '@/app/components/ui/button'
+import Layout from '@/app/components/Layout/Layout'
+
 
 const page = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -24,15 +26,11 @@ const page = () => {
   const [profile, setProfile] = useState(initialState);
   return (
 
+    <Layout>
     <div className="flex flex-col md:flex-row min-h-screen">
-      <Sidebar
-        // isSidebarOpen={isSidebarOpen}
-        // toggleSidebar={toggleSidebar}
-        profile={profile}
-      // router={location}
-      />
+      
 
-      <div className="pt-20 px-[69px] flex flex-col gap-[26px] w-[80%]">
+      <div className="pt-20 px-[69px] flex flex-col gap-[26px] w-[100%]">
         <div className='flex flex-col gap-[6px]'>
           <p className="text-[24px] text-black font-montserrat font-medium">Your profile</p>
           <p className="text-[14px] text-[#888888] font-poppins font-light">Personalize your profile</p>
@@ -97,6 +95,7 @@ const page = () => {
         </div>
       </div>
     </div>
+    </Layout>
   )
 }
 

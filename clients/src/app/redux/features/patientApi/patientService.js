@@ -70,29 +70,9 @@ const loginStatus = async () =>{
     };
  //  Login with Code
    
-    const addPatientFile = async (patientData, email) => {
-      const response = await axios.post(API_URL + `addPatientFile/${email}`, patientData);
-      return response.data;
-    };
+  
 
-    // Send Login Code
-    const requestAccessToPatientData = async (email) => {
-      const response = await axios.post('http://localhost:5000/api/patients/requestAccessToPatientData', email);
-      return response.data.message;
-    };
 
-    //Access Patient 
-
-    const accessPatientDataWithCode = async (code, email) => {
-      const response = await axios.post(API_URL + `accessPatientDataWithCode/${email}`, code);
-      return response.data;
-    };
-
-    //GET User Profile
- const getPatientFilesByDoctorId = async (email) => {
-  const response = await axios.get(API_URL + `getPatientFilesByDoctorId/${email}`);
-  return response.data;
-};
 
     
 
@@ -106,10 +86,7 @@ const patientService = {
       sendPatientVerificationEmail,
       sendPatientLoginCode,
       loginPatientWithCode,
-      addPatientFile,
-      requestAccessToPatientData,
-      accessPatientDataWithCode,
-      getPatientFilesByDoctorId
+    
       
 }
 

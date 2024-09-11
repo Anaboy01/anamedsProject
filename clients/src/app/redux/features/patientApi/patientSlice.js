@@ -149,69 +149,7 @@ export const sendPatientLoginCode = createAsyncThunk(
     );
 
 
-    export const addPatientFile = createAsyncThunk(
-      "patient/addPatientFile",
-      async ({patientData, email}, thunkAPI) => {
-        try {
-          return await patientService.addPatientFile(patientData, email);
-        } catch (error) {
-          const message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          return thunkAPI.rejectWithValue(message);
-        }
-      }
-    );
 
-    export const requestAccessToPatientData = createAsyncThunk(
-      'patient/requestAccessToPatientData',
-      async(email, thunkApi) =>{
-        try {
-          return await patientService.requestAccessToPatientData(email)
-        } catch (error) {
-          const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-    
-          return thunkApi.rejectWithValue(message)
-        }
-      }
-    )
-
-
-    export const accessPatientDataWithCode = createAsyncThunk(
-      "patient/accessPatientDataWithCode",
-      async ({code, email}, thunkAPI) => {
-        try {
-          return await patientService.accessPatientDataWithCode(code, email);
-        } catch (error) {
-          const message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          return thunkAPI.rejectWithValue(message);
-        }
-      }
-    );
-    export const getPatientFilesByDoctorId = createAsyncThunk(
-      "patient/getPatientFilesByDoctorId",
-      async (email, thunkAPI) => {
-        try {
-          return await patientService.getPatientFilesByDoctorId( email);
-        } catch (error) {
-          const message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          return thunkAPI.rejectWithValue(message);
-        }
-      }
-    );
 
 const patientSlice = createSlice({
   name: 'patient',
@@ -409,81 +347,7 @@ const patientSlice = createSlice({
             toast.error(action.payload);
           })
 
-          //ADD PATIENT FILE
-
-          .addCase(addPatientFile.pending, (state, action) => {
-            state.isLoading = true
-      })
-      .addCase(addPatientFile.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.isSuccess = true
-            state.patient = action.payload;
-            console.log(action.payload)
-            toast.success('Form Creation Succesful')
-      })
-      .addCase(addPatientFile.rejected, (state, action) => {
-            state.isLoading = false
-            state.isError = true
-            state.isSuccess = false
-            state.message = action.payload
-            state.patient = null;
-            toast.error(action.payload)
-      })
-
-      //REQUEST CODE
-      .addCase(requestAccessToPatientData.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(requestAccessToPatientData.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.message = action.payload; 
-        toast.success(action.payload)
-      })
-      .addCase(requestAccessToPatientData.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-        toast.error(action.payload)
-      })
-
-      //ACCESS CODE
-
-      .addCase(accessPatientDataWithCode.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(accessPatientDataWithCode.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.patient = action.payload;
-        toast.success(action.payload)
-        console.log(action.payload)
-      })
-      .addCase(accessPatientDataWithCode.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.patient = null;
-        toast.error(action.payload);
-      })
-      //ACCESS CODE
-
-      .addCase(getPatientFilesByDoctorId.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(getPatientFilesByDoctorId.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.patient = action.payload;
-        toast.success(action.payload)
-        console.log(action.payload)
-      })
-      .addCase(getPatientFilesByDoctorId.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.patient = null;
-        toast.error(action.payload);
-      })
-          
+  
 
 
 
