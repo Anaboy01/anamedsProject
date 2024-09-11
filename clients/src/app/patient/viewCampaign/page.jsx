@@ -90,8 +90,10 @@ const page = () => {
                 Story
               </h3>
               <div className="w-[360px] h-auto p-5  border-[1px] rounded-[8px] bg-[#FFFFFF] border-[#00000066]">
+
                 <article className="text-wrap  ...">
                   <p className="text-[#1C1C1C] text-[17px] h-[154px]">joe</p>
+
                 </article>
               </div>
             </div>
@@ -111,6 +113,7 @@ const page = () => {
             </div>
           </div>
 
+
           <div className="flex justify-center gap-[20px] flex-col">
             <h3 className="text-[14px] font-medium leading-[16.45px] text-[#454545] uppercase font-mavenPro">
               Fund
@@ -118,12 +121,14 @@ const page = () => {
             <div className="flex flex-col items-center  justify-center w-[343px] h-[390px] rounded-[20px] bg-[#FFFFFF] p-10 ">
               <div className=" flex flex-col  gap-[20px] w-[306px] h-[359px] ">
                 <h4 className="text-[18px] font-normal leading-[21.15px] text-[#1C1C1C] font-mavenPro text-center">
+
                   Fund campaign
                 </h4>
 
                 <div className="w-[306px] h-[65px] p-5  border-[1px] rounded-[8px] bg-[#FFFFFF] border-[#00000066]">
                   <p className="text-[#1C1C1C] text-[14px]  font-mavenPro font-normal">0.0015Eth</p>
                 </div>
+
 
                 <div className="w-[306px] h-[151px] gap-[6px]">
                   <h4 className="text-[16px] font-medium font-montserrat leading-[19.5px] text-[#3D3D3D]">
@@ -135,6 +140,7 @@ const page = () => {
                 </div>
 
                 <button className="w-[306px] h-[47px] p-[10px] gap-[10px] rounded-[20px] font-inter bg-[#2AA0CD] text-[#F5F5F5] text-[16px] leading-[19.36px]">
+
                   Fund campaign
                 </button>
               </div>
