@@ -20,7 +20,7 @@ export const Form = ({
 }) => {
   const { firstName, lastName, email, password, password2 } = formData; // Update here
 
-  console.log(formData);
+
 
   const switchIcon = (condition) => {
     const checkIcon = <BsCheck2All color="green" size={15} />;
@@ -108,7 +108,10 @@ export const Form = ({
       </div>
       {error && <Alert>{error}</Alert>}
       <div className="w-full">
-        <button type="submit" className="w-full">Register</button>
+        {/* <button type="submit" className="w-full">Register</button> */}
+        <Button className="w-full rounded-[20px]" type="submit" size="lg">
+          Login
+        </Button>
         <div className='block'>
           <GoogleButton />
         </div>

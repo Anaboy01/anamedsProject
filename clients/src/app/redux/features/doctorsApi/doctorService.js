@@ -10,11 +10,7 @@ const registerDoctor = async (doctorData) =>{
       const response = await axios.post(API_URL + 'registerDoctor', doctorData)
       return response.data
 }
-//login Patient
 
-
-
-//login Doctor
 
 const loginDoctor = async (doctorData) =>{
       const response = await axios.post(API_URL + 'loginDoctor', doctorData)
@@ -23,20 +19,18 @@ const loginDoctor = async (doctorData) =>{
 
 
 
-//logout Patient
 
 const logoutDoctor = async () =>{
       const response = await axios.get(API_URL + 'logoutDoctor')
       return response.data.message
 }
-//login staus Patient
+
 
 const doctorloginStatus = async () =>{
       const response = await axios.get(API_URL + 'loginStatus')
       return response.data
 }
-//Get  Patient
- //GET User Profile
+
  const getDoctor = async () => {
       const response = await axios.get(API_URL + "getDoctor");
       return response.data;
@@ -49,7 +43,7 @@ const doctorloginStatus = async () =>{
       return response.data;
 
     };
- //GET User Profile
+
  const updateDoctor = async (doctorData) => {
       const response = await axios.patch(API_URL + "updateDoctor", doctorData);
       return response.data;
@@ -60,20 +54,20 @@ const doctorloginStatus = async () =>{
         return response.data;
       };
 
-          // Send Login Code
+        
     const requestAccessToPatientData = async (email) => {
         const response = await axios.post('http://localhost:5000/api/doctors/requestAccessToPatientData', email);
         return response.data.message;
       };
   
-      //Access Patient 
+
   
       const accessPatientDataWithCode = async (code, email) => {
         const response = await axios.post(API_URL + `accessPatientDataWithCode/${email}`, code);
         return response.data;
       };
   
-      //GET User Profile
+
    const getPatientFilesByDoctorId = async (email) => {
     const response = await axios.get(API_URL + `getPatientFilesByDoctorId/${email}`);
     return response.data;
