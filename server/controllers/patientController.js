@@ -282,6 +282,7 @@ const loginPatient = asyncHandler(async (req, res) => {
       role,
       photo,
       patient_file,
+      token
     });
   } else {
     res.status(500);
@@ -349,6 +350,10 @@ const loginWithCode = asyncHandler(async (req, res) => {
   const { email } = req.params;
   const { loginCode } = req.body;
 
+  // const loginCode = req.body.lo
+
+  console.log(loginCode)
+
   const patient = await Patient.findOne({ "contactInfo.email": email });
 
   if (!patient) {
@@ -369,6 +374,8 @@ const loginWithCode = asyncHandler(async (req, res) => {
   }
 
   const decryptedLoginCode = cryptr.decrypt(patientToken.lToken);
+
+  console.log(decryptedLoginCode)
 
   if (loginCode !== decryptedLoginCode) {
     res.status(400);

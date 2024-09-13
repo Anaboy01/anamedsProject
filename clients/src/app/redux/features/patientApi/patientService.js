@@ -23,7 +23,7 @@ const register = async (patientData) =>{
 
 //login Patient
 const login = async (patientData) =>{
-      const response = await axios.post(API_URL + 'loginPatient', patientData)
+      const response = await axios.post(API_URL + 'loginPatient', patientData,  { withCredentials: true })
       return response.data
 }
 
@@ -36,13 +36,13 @@ const logout = async () =>{
 //login staus Patient
 
 const loginStatus = async () =>{
-      const response = await axios.get(API_URL + 'loginStatus')
+      const response = await axios.get(API_URL + 'loginStatus', { withCredentials: true })
       return response.data
 }
 //Get  Patient
  //GET User Profile
  const getPatient = async () => {
-      const response = await axios.get(API_URL + "getPatient");
+      const response = await axios.get(API_URL + "getPatient", { withCredentials: true });
       return response.data;
     };
  //GET User Profile
@@ -64,8 +64,9 @@ const loginStatus = async () =>{
     };
  //  Login with Code
    
-    const loginPatientWithCode = async (code, email) => {
-      const response = await axios.post(API_URL + `loginPatientWithCode/${email}`, code);
+    const loginPatientWithCode = async (loginCode, email) => {
+      console.log(loginCode)
+      const response = await axios.post(API_URL + `loginPatientWithCode/${email}`, loginCode, { withCredentials: true });
       return response.data;
     };
  //  Login with Code

@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -9,9 +9,10 @@ import Inter from "../../../../public/userinter.svg";
 
 import { validateEmail } from "@/app/redux/features/patientApi/patientService";
 import { toast } from "react-toastify"; // Import toast
-import { login, RESET, sendPatientLoginCode } from "@/app/redux/features/patientApi/patientSlice";
+import { login, RESET, sendPatientLoginCode, loginPatientWithCode } from "@/app/redux/features/patientApi/patientSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
+import ReusableModal from "@/app/components/Modal/Modal";
 
 const initialState = {
   email: "",
@@ -21,6 +22,8 @@ const initialState = {
 export default function Page() {
   const [formData, setFormData] = useState(initialState);
   const { email, password } = formData;
+  const [showModal, setShowModal] = useState(false); // State to show modal
+  const [loginCode, setLoginCode] = useState(""); // State to store the 2FA code
   const dispatch = useDispatch();
   const router = useRouter();
 
@@ -28,11 +31,17 @@ export default function Page() {
     (state) => state.patient
   );
 
+  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleModalInputChange = (e) => {
+    setLoginCode(e.target.value);
+  };
+
+  // Handle user login
   const loginPatient = async (e) => {
     e.preventDefault();
 
@@ -49,18 +58,41 @@ export default function Page() {
       password,
     };
 
-    // Show loading toast
     const toastId = toast.loading("Logging in...");
 
     try {
-      await dispatch(login(patientData)).unwrap(); // Await the login dispatch
-
-      // If successful, update the toast
-      toast.update(toastId, { render: "Logged in successfully", type: "success", isLoading: false, autoClose: 3000 });
+      await dispatch(login(patientData)).unwrap();
+      toast.update(toastId, {
+        render: "Logged in successfully",
+        type: "success",
+        isLoading: false,
+        autoClose: 3000,
+      });
     } catch (error) {
-      // On error, update the toast
-      toast.update(toastId, { render: "Login failed. Please check your credentials.", type: "error", isLoading: false, autoClose: 3000 });
+      toast.update(toastId, {
+        render: "Login failed. Please check your credentials.",
+        type: "error",
+        isLoading: false,
+        autoClose: 3000,
+      });
     }
+  };
+
+  // Handle token submission for 2FA
+  const handleTokenSubmit = async (inputValue) => {
+    const loginCode = {
+      loginCode: inputValue
+    }
+    
+    
+    try {
+      await dispatch(loginPatientWithCode({ email, loginCode })).unwrap();
+      toast.success("Login token verified successfully!");
+      router.push("/patient/profile");
+    } catch (error) {
+      toast.error("Invalid token. Please try again.");
+    }
+    setShowModal(false); // Close the modal after submission
   };
 
   useEffect(() => {
@@ -69,8 +101,8 @@ export default function Page() {
     }
 
     if (isError && twoFactor) {
-      dispatch(sendPatientLoginCode(email));
-      router.push(`/patientLoginCode/${email}`);
+      dispatch(sendPatientLoginCode(email)); // Send login code to email
+      setShowModal(true); // Show the modal for two-factor authentication
     }
 
     dispatch(RESET());
@@ -120,6 +152,18 @@ export default function Page() {
           </div>
         </div>
       </div>
+
+      {/* Two-Factor Authentication Modal */}
+      <ReusableModal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        title="Enter Two-Factor Authentication Code"
+        description="We sent a login code to your email. Please enter it below to continue."
+        handleSubmit={handleTokenSubmit}
+        inputValue={loginCode}
+        handleInputChange={handleModalInputChange}
+        type="text"
+      />
     </main>
   );
 }

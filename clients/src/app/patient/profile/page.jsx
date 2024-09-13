@@ -10,11 +10,40 @@ import { TbPhotoEdit } from "react-icons/tb";
 import Profile from '../../../../public/Frame 79.png';
 import { useDispatch, useSelector } from 'react-redux';
 import { getPatient, selectPatient, updatePatient } from '@/app/redux/features/patientApi/patientSlice';
+import useRedirectLoggedPatient from '@/app/customHook/useRedirectPatient';
+
 
 
 const ProfilePage = () => {
+
+  useRedirectLoggedPatient('/patient/login')
+
+  const dispatch = useDispatch()
+
+  const {isLoading, isLoggedIn, isSuccess, message, patient} = useSelector(
+        (state) => state.patient
+  )
+
+  console.log(patient)
+
+   // Set the initial state with default values from the JSON data
+const initialState = {
+  firstName: patient?.name?.firstName || '',
+  lastName: patient?.name?.lastName || '',
+  email: patient?.contactInfo?.email || '',
+  phone: patient?.contactInfo?.phone || '',
+  photo: patient?.photo || '',
+  role: patient?.role || '',
+  isVerified: patient?.isVerified || false,
+};
+
+  const [profile, setProfile] = useState(initialState)
   const [profileImage, setProfileImage] = useState(Profile); // Default image
   const [selectedFile, setSelectedFile] = useState(null);
+
+  useEffect(() => {
+    dispatch(getPatient())
+}, [dispatch])
 
   // Handle file input change
   const handleFileChange = (e) => {
@@ -30,34 +59,93 @@ const ProfilePage = () => {
     }
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfile({ ...profile, [name]: value });
+};
+
   // Upload image to Cloudinary
-  const uploadImage = async (e) => {
-    e.preventDefault();
-  
+  const uploadImage = async () => {
     if (!selectedFile) {
       console.log("No file selected");
-      return;
+      return null; // Return null if no file is selected
     }
   
-    // Convert the image to base64
-    const reader = new FileReader();
-    reader.readAsDataURL(selectedFile);
-    reader.onloadend = async () => {
-      try {
-        const res = await axios.post('/api/upload', { image: reader.result });
+    try {
+      // Convert the image to base64
+      const reader = new FileReader();
+      return new Promise((resolve, reject) => {
+        reader.readAsDataURL(selectedFile);
+        reader.onloadend = async () => {
+          try {
+            const res = await axios.post('/api/upload', { image: reader.result });
+            const imageUrl = res.data.url;
+            console.log("Uploaded image URL:", imageUrl);
+            resolve(imageUrl); // Return the image URL after successful upload
+          } catch (error) {
+            console.error('Error uploading image:', error);
+            reject(error); // Handle the error if image upload fails
+          }
+        };
   
-        const imageUrl = res.data.url;
-        console.log("Uploaded image URL:", imageUrl);
-        setProfileImage(imageUrl);
-      } catch (error) {
-        console.error('Error uploading image:', error);
-      }
-    };
-  
-    reader.onerror = () => {
-      console.error('Error reading file');
-    };
+        reader.onerror = () => {
+          console.error('Error reading file');
+          reject(new Error('Error reading file'));
+        };
+      });
+    } catch (error) {
+      console.error('Error in uploadImage function:', error);
+      return null; // Return null in case of an error
+    }
   };
+  
+
+
+  const saveProfile = async (e) => {
+    e.preventDefault();
+  
+    let imageURL = profile.photo; // Default to existing photo URL in case there's no new upload
+  
+    try {
+      // Check if a new image is selected and upload it
+      if (selectedFile) {
+        imageURL = await uploadImage(); // Wait for image upload and get the URL
+      }
+  
+      // Prepare patient data with the new or existing image URL
+      const patientData = {
+        firstName: profile.firstName,
+        lastName: profile.lastName,
+        phone: profile.phone,
+        photo: imageURL, // Use the new uploaded image URL or the existing photo
+      };
+  
+      // Dispatch action to update the patient profile
+      dispatch(updatePatient(patientData));
+  
+    } catch (error) {
+      console.error('Error saving profile:', error);
+      toast.error(error.message);
+    }
+  };
+  
+
+useLayoutEffect(() => {
+      if(patient){
+        setProfile({
+              ...profile,
+              firstName: patient?.name?.firstName,
+              lastName: patient?.name?.lastName,
+              email: patient?.contactInfo?.email,
+              phone: patient?.contactInfo?.phone,
+              photo: patient.photo,
+              role: patient.role,
+              isVerified: patient.isVerified,
+        })
+      }  
+}, [patient])
+
+
   
   return (
     <Layout>
@@ -101,10 +189,13 @@ const ProfilePage = () => {
                   <Label htmlFor="firstName" className='font-medium text-[14px] font-mavenPro uppercase'>First Name</Label>
                   <Input
                     className="w-full p-[24px]"
+                    type='text'
+                    name='firstName' 
                     required
                     id="firstName"
-                    type="text"
-                    defaultValue="Muhammed"
+                    value={profile?.firstName} // Change this to 'profile.firstName'
+                    onChange={handleInputChange}
+             
                   />
                 </div>
                 <div className='w-[50%] flex-col flex gap-[9px]'>
@@ -112,9 +203,11 @@ const ProfilePage = () => {
                   <Input
                     className="w-full p-[24px]"
                     required
+                    type='text'
+                    name='lastName'
                     id="lastName"
-                    type="text"
-                    defaultValue="Musa"
+                    value={profile?.lastName} // Change this to 'profile.lastName'
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
@@ -129,6 +222,8 @@ const ProfilePage = () => {
                   defaultValue="Mula"
                   type="email"
                   disabled
+                  value={profile?.email}
+                  onChange={handleInputChange}
                 />
               </div>
 
