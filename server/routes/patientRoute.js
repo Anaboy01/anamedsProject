@@ -1,5 +1,5 @@
 const express = require('express');
-const { registerPatient, sendVerificationEmail, verifyPatient, loginPatient, sendLoginCode, loginWithCode, forgotPassword, resetPassword, changePassword, updatePatient, deletePatient, getAllPatients, getPatient, loginStatus, requestAccessToPatientData, accessPatientDataWithCode, addPatientFile, getPatientFilesByHospitalId, getPatientFilesByDoctorId, logoutPatient,  getPatientFileById } = require('../controllers/patientController');
+const { registerPatient, sendVerificationEmail, verifyPatient, loginPatient, sendLoginCode, loginWithCode, forgotPassword, resetPassword, changePassword, updatePatient, deletePatient, getAllPatients, getPatient, loginStatus, requestAccessToPatientData, accessPatientDataWithCode, addPatientFile, getPatientFilesByHospitalId, getPatientFilesByDoctorId, logoutPatient,  getPatientFileById, getPatientFiles } = require('../controllers/patientController');
 const { patientProtect, patientAdminOnly, doctorProtect, hospitalProtect } = require('../middleware/authMiddleware');
 
 
@@ -29,6 +29,7 @@ patientRouter.patch('/changePassword',patientProtect, changePassword),
 patientRouter.get('/getPatientFileById/:email', getPatientFileById);
 
 patientRouter.get('/getPatientFilesByHospitalId/:email',hospitalProtect, getPatientFilesByHospitalId);
+patientRouter.get("/getPatientFiles", patientProtect, getPatientFiles);
 
 
 module.exports = patientRouter

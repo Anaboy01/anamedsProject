@@ -1,13 +1,49 @@
 "use client";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import DatePicker from "react-datepicker";
-import { useState } from "react";
+import { useState, useEffect } from "react"; 
 import "react-datepicker/dist/react-datepicker.css";
-import CustomInput from "./customInputs"; // Adjust the import path as needed
+import CustomInput from "./customInputs"; 
+import { useSelector, useDispatch } from "react-redux"; 
+import { getPatientFiles } from "@/app/redux/features/patientApi/patientSlice";
+import PatientFilesTable from "@/app/components/PatientFilesTable/PatientFilesTable";// Adjust the import path
 
 const Page = () => {
+  const dispatch = useDispatch(); 
+
+  // Getting necessary states from Redux
+  const { isLoading, isLoggedIn, isSuccess, message, patient } = useSelector(
+    (state) => state.patient
+  );
+
+  useEffect(() => {
+    dispatch(getPatientFiles());
+  }, [dispatch]);
+
+  // Logging the patient object whenever it is updated
+  useEffect(() => {
+    if (patient) {
+      console.log("Patient files:", patient.patient_files);
+      console.log("First name:", patient.name.firstName);
+      console.log("Last name:", patient.name.lastName);
+    }
+  }, [patient]); 
+
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  useEffect(() => {
+    console.log("Start Date:", startDate);
+    console.log("End Date:", endDate);
+  }, [startDate, endDate]);
+
+  // Filter patient files based on the selected date range
+  const filteredFiles = patient?.patient_files?.filter((file) => {
+    const fileDate = new Date(file.createdAt); // Convert file date to Date object
+    const isAfterStartDate = startDate ? fileDate >= startDate : true;
+    const isBeforeEndDate = endDate ? fileDate <= endDate : true;
+    return isAfterStartDate && isBeforeEndDate;
+  });
 
   const handleClearDates = () => {
     setStartDate(null);
@@ -32,13 +68,13 @@ const Page = () => {
           <h3 className="text-[18px] font-[500] mb-1 leading-[21.94px]">
             First name:{" "}
             <span className="font-Poppins text-[16px] font-[400] leading-[24px] text-[#6D6D6D]">
-              Mary
+              {patient?.name?.firstName}
             </span>
           </h3>
           <h3 className="text-[18px] font-[500] mb-1 leading-[21.94px]">
             Last name:{" "}
             <span className="font-Poppins text-[16px] font-[400] leading-[24px] text-[#6D6D6D]">
-              Joe
+              {patient?.name?.lastName}
             </span>
           </h3>
         </div>
@@ -87,44 +123,8 @@ const Page = () => {
           </div>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="min-w-full border-collapse shadow-lg backdrop-blur-md bg-white/30 rounded-lg">
-            <thead>
-              <tr className="bg-[#2AA0CD] text-white">
-                <th className="p-2 text-left rounded-tl-lg">File name</th>
-                <th className="p-2 text-left">ID</th>
-                <th className="p-2 text-left rounded-tr-lg">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="cursor-pointer odd:bg-[#2AA0CD]/30 even:bg-[#2AA0CD]/20 hover:bg-[#2AA0CD]/40 transition-all">
-                <td className="p-2">Covid</td>
-                <td className="p-2">1</td>
-                <td className="p-2">10/1/2023</td>
-              </tr>
-              <tr className="cursor-pointer odd:bg-[#2AA0CD]/30 even:bg-[#2AA0CD]/20 hover:bg-[#2AA0CD]/40 transition-all">
-                <td className="p-2">2nd trimester</td>
-                <td className="p-2">2</td>
-                <td className="p-2">10/2/2023</td>
-              </tr>
-              <tr className="cursor-pointer odd:bg-[#2AA0CD]/30 even:bg-[#2AA0CD]/20 hover:bg-[#2AA0CD]/40 transition-all">
-                <td className="p-2">Burn</td>
-                <td className="p-2">3</td>
-                <td className="p-2">10/3/2023</td>
-              </tr>
-              <tr className="cursor-pointer odd:bg-[#2AA0CD]/30 even:bg-[#2AA0CD]/20 hover:bg-[#2AA0CD]/40 transition-all">
-                <td className="p-2">Pregnancy</td>
-                <td className="p-2">4</td>
-                <td className="p-2">10/4/2023</td>
-              </tr>
-              <tr className="cursor-pointer odd:bg-[#2AA0CD]/30 even:bg-[#2AA0CD]/20 hover:bg-[#2AA0CD]/40 transition-all">
-                <td className="p-2">Urinary tract infection</td>
-                <td className="p-2">5</td>
-                <td className="p-2">10/5/2023</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        {/* Pass the filtered files as props to PatientFilesTable */}
+        <PatientFilesTable patientFiles={filteredFiles} />
       </div>
     </div>
   );
