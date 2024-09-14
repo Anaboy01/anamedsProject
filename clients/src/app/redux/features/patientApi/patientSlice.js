@@ -149,6 +149,19 @@ export const sendPatientLoginCode = createAsyncThunk(
       }
     );
 
+    export const getPatientFiles = createAsyncThunk(
+      'patient/getPatientFiles',
+      async(_, thunkApi) =>{
+        try {
+          return await patientService.getPatientFiles()
+        } catch (error) {
+          const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    
+          return thunkApi.rejectWithValue(message)
+        }
+      }
+    )
+
 
 
 
@@ -346,6 +359,23 @@ const patientSlice = createSlice({
             state.isError = true;
             state.patient = null;
             toast.error(action.payload);
+          })
+
+          .addCase(getPatientFiles.pending, (state) => {
+            state.isLoading = true;
+          })
+          .addCase(getPatientFiles.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.isLoggedIn = true;
+            state.patient = action.payload;
+          })
+          .addCase(getPatientFiles.rejected, (state, action) => {
+            state.isLoading = false;
+            state.isError = true;
+            
+            state.message = action.payload;
+            toast.error(action.payload)
           })
 
   

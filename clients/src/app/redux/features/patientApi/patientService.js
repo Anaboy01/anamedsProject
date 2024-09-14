@@ -51,7 +51,9 @@ const getPatient = async () => {
 };
 //GET User Profile
 const updatePatient = async (patientData) => {
-  const response = await axios.patch(API_URL + "updatePatient", patientData);
+  const response = await axios.patch(API_URL + "updatePatient", patientData, {
+    withCredentials: true,
+  });
   return response.data;
 };
 
@@ -77,7 +79,14 @@ const loginPatientWithCode = async (loginCode, email) => {
   );
   return response.data;
 };
-//  Login with Code
+
+const getPatientFiles = async () => {
+  const response = await axios.get(API_URL + "getPatientFiles", {
+    withCredentials: true,
+  });
+  return response.data;
+};
+
 
 const patientService = {
   register,
@@ -89,6 +98,7 @@ const patientService = {
   sendPatientVerificationEmail,
   sendPatientLoginCode,
   loginPatientWithCode,
+  getPatientFiles
 };
 
 export default patientService;

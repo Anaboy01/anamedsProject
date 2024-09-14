@@ -24,7 +24,7 @@ const ProfilePage = () => {
         (state) => state.patient
   )
 
-  console.log(patient)
+
 
    // Set the initial state with default values from the JSON data
 const initialState = {
@@ -104,23 +104,23 @@ const initialState = {
   const saveProfile = async (e) => {
     e.preventDefault();
   
-    let imageURL = profile.photo; // Default to existing photo URL in case there's no new upload
+    let imageURL = profile.photo;
   
     try {
-      // Check if a new image is selected and upload it
+      
       if (selectedFile) {
-        imageURL = await uploadImage(); // Wait for image upload and get the URL
+        imageURL = await uploadImage(); 
       }
   
-      // Prepare patient data with the new or existing image URL
+      
       const patientData = {
         firstName: profile.firstName,
         lastName: profile.lastName,
         phone: profile.phone,
-        photo: imageURL, // Use the new uploaded image URL or the existing photo
+        photo: imageURL, 
       };
   
-      // Dispatch action to update the patient profile
+     
       dispatch(updatePatient(patientData));
   
     } catch (error) {
@@ -142,6 +142,8 @@ useLayoutEffect(() => {
               role: patient.role,
               isVerified: patient.isVerified,
         })
+
+        setProfileImage(patient?.photo ? patient.photo : profileImage)
       }  
 }, [patient])
 
@@ -156,7 +158,7 @@ useLayoutEffect(() => {
             <p className="text-[14px] text-[#888888] font-poppins font-light">Personalize your profile</p>
           </div>
 
-          <form className='flex items-center gap-80 w-full font-mavenPro' onSubmit={uploadImage}>
+          <form className='flex items-center gap-80 w-full font-mavenPro' onSubmit={saveProfile}>
             <div className='InputFieldForImage relative group'>
               <label htmlFor="photo-upload" className="cursor-pointer relative">
                 <Image

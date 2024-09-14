@@ -1008,6 +1008,25 @@ const getPatientFileById = asyncHandler(async (req, res) => {
   res.json({ patientFile: responseFile });
 });
 
+const getPatientFiles = asyncHandler(async (req, res) => {
+  // Fetch the patient by their ID
+  const patient = await Patient.findById(req.patient._id);
+
+  // Check if the patient exists
+  if (patient) {
+    const { patient_files, name } = patient; 
+    
+  
+
+    
+    res.status(200).json({patient_files, name
+    });
+  } else {
+    res.status(404);
+    throw new Error("User not found");
+  }
+});
+
 module.exports = {
   registerPatient,
   sendVerificationEmail,
@@ -1030,4 +1049,5 @@ module.exports = {
   getPatientFilesByHospitalId,
   getPatientFilesByDoctorId,
   getPatientFileById,
+  getPatientFiles
 };
