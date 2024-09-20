@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ReusableModal = ({ show, type, onClose, title, description, handleSubmit, inputValue, handleInputChange }) => {
+const ReusableModal = ({ show, type, onClose, title, description, handleSubmit, inputValue, handleInputChange, placeholder }) => {
   
 
   
@@ -16,7 +16,7 @@ const ReusableModal = ({ show, type, onClose, title, description, handleSubmit, 
     <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center">
       <div className="bg-white rounded-lg shadow-lg w-96 p-6">
         <div className="flex justify-between items-center border-b pb-4">
-          <h2 className="text-lg font-semibold">{title}</h2>
+          <h2 className="text-lg text-black font-semibold">{title}</h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">✖</button>
         </div>
         <div className="pt-4">
@@ -24,7 +24,7 @@ const ReusableModal = ({ show, type, onClose, title, description, handleSubmit, 
           <form onSubmit={onSubmit}>
             <input
               type={type}
-              placeholder="Enter token"
+              placeholder={placeholder || " "}
               className="w-full p-2 border text-black border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
               value={inputValue}
               onChange={handleInputChange}
