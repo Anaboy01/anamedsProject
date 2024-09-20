@@ -4,11 +4,12 @@ import { MdBarChart } from "react-icons/md";
 import { BsCartDash } from "react-icons/bs";
 import { GrDocumentText } from "react-icons/gr";
 import { usePathname } from "next/navigation";
-import { IoMdSettings } from "react-icons/io";
+import { IoIosArrowDown, IoIosNotificationsOutline, IoMdSettings } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
 import Logo from '../../../../public/anameds.svg'
 import Image from "next/image";
+import { MetaMaskAvatar } from 'react-metamask-avatar';
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
   const pathname = usePathname();
@@ -55,7 +56,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
   )
 
   return (
-    <>
+    <div className="flex justify-between">
       <div className="fixed inset-0 md:relative md:w-1/5 bg-[#2AA0CD] p-4 flex flex-col space-y-2 z-20 border-r border-t font-inter">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-[20px] my-3">
@@ -74,31 +75,28 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
           <p>Menu</p>
         </div>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
-            pathname === "/patient/dashboard"
-              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
-              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
-          }`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${pathname === "/patient/dashboard"
+            ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+            : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+            }`}
           href="/patient/dashboard"
         >
           <MdBarChart size={25} /> <p className="text-[14px]">Dashboard</p>
         </Link>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
-            pathname === "/campaign"
-              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
-              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
-          }`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${pathname === "/campaign"
+            ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+            : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+            }`}
           href="/campaign"
         >
           <FaPeopleGroup size={25} /> <p className="text-[14px]">Campaign</p>
         </Link>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
-            pathname === "/patient/records"
-              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
-              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
-          }`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${pathname === "/patient/records"
+            ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+            : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+            }`}
           href="/patient/records"
         >
           <GrDocumentText size={25} /> <p className="text-[14px]">View records</p>
@@ -108,27 +106,38 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
           <p>Other</p>
         </div>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
-            pathname === "/setting"
-              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
-              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
-          }`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${pathname === "/setting"
+            ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+            : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+            }`}
           href="/setting"
         >
           <IoMdSettings size={25} /> <p className="text-[14px]">Settings</p>
         </Link>
         <Link
-          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${
-            pathname === "/logout"
-              ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
-              : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
-          }`}
+          className={`flex gap-[10px] p-3 mt-3 items-center transition-all duration-300 ease-in-out ${pathname === "/logout"
+            ? "text-[#2AA0CD] bg-[#C2E5F5] rounded-lg"
+            : "text-white hover:bg-white/50 hover:text-[#2AA0CD] hover:backdrop-blur-md hover:rounded-lg"
+            }`}
           href="/logout"
         >
           <FaArrowLeft size={25} /> <p className="text-[14px]">Logout</p>
         </Link>
       </div>
-    </>
+
+      <div className="flex">
+        <MetaMaskAvatar address="0xb01F14d1C9000D453241221EB54648F1C378c970" size={24} />
+        <div className="flex gap-2">
+          <Image
+            src={''} width={18} height={18} alt="name" />
+          <h4>Muhammed Musa</h4>
+        </div>
+        <div className="flex">
+          <IoIosArrowDown size={18} />
+          <IoIosNotificationsOutline size={18} color="gray" />
+        </div>
+      </div>
+    </div>
   );
 };
 
