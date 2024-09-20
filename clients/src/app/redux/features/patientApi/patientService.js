@@ -71,7 +71,7 @@ const sendPatientLoginCode = async (email) => {
 //  Login with Code
 
 const loginPatientWithCode = async (loginCode, email) => {
-  console.log(loginCode);
+  // console.log(loginCode);
   const response = await axios.post(
     API_URL + `loginPatientWithCode/${email}`,
     loginCode,

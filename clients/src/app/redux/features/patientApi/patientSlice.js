@@ -134,7 +134,7 @@ export const sendPatientLoginCode = createAsyncThunk(
     export const loginPatientWithCode = createAsyncThunk(
       "patient/loginPatientWithCode",
       async ({loginCode, email}, thunkAPI) => {
-        console.log(loginCode)
+        // console.log(loginCode)
         try {
           return await patientService.loginPatientWithCode(loginCode, email);
         } catch (error) {
