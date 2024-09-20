@@ -1,78 +1,68 @@
-'use client'
-import { signIn } from 'next-auth/react'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useState } from 'react'
-import { Alert } from '../../components/ui/alert'
-import { Input } from '../../components/ui/input'
-import { Label } from '../../components/ui/label'
-import { Button } from '../../components/ui/button'
-import GoogleButton from '../../components/GoogleButton'
+"use client";
+import React from "react";
+import { Alert } from "../../components/ui/alert";
+import { Input } from "../../components/ui/input";
+import { Label } from "../../components/ui/label";
+import { Button } from "../../components/ui/button";
+import { FormField } from "@/app/components/ui/formField";
+import GoogleButton from "../../components/GoogleButton";
 
-export const Form = () => {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard'
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
-
-  const onSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      setLoading(true)
-      const res = await signIn('credentials', {
-        redirect: false,
-        email,
-        password,
-        callbackUrl
-      })
-      console.log('Res', res)
-      if (!res?.error) {
-        router.push(callbackUrl)
-      } else {
-        setError('Invalid email or password')
-      }
-    } catch (err) {
-      console.log(err)
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  if (loading) return <p>loading</p>
+export const Form = ({
+  formData,
+  handleInputChange,
+  loginDoctor,
+  error,
+  loading,
+}) => {
+  const { email, password } = formData;
 
   return (
-    <form onSubmit={onSubmit} className="space-y-10 w-full sm:w-[400px]">
-      <div className="grid w-full items-center gap-1.5">
-        <Label htmlFor="email" className="text-[14px] text-[#1C1C1C]">email address</Label>
+    <form
+      onSubmit={loginDoctor}
+      className="space-y-10 w-full sm:w-[400px] font-mavenPro"
+    >
+      <FormField className="grid w-full items-center gap-[9px]">
+        <Label htmlFor="email" className="text-[14px] uppercase">
+          Email Address
+        </Label>
         <Input
-          className="w-full"
+          className="w-full py-[24px] px-[20px]"
           required
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleInputChange}
           id="email"
+          name="email"
           type="email"
         />
-      </div>
-      <div className="grid w-full items-center gap-1.5">
-        <Label htmlFor="password" className="text-[14px] text-[#1C1C1C]">Password</Label>
+      </FormField>
+      <FormField className="grid w-full items-center gap-1.5">
+        <Label htmlFor="password" className="text-[14px] uppercase">
+          Password
+        </Label>
         <Input
-          className="w-full "
+          className="w-full py-[24px] px-[20px]"
           required
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handleInputChange}
           id="password"
+          name="password"
           type="password"
         />
-      </div>
+      </FormField>
       {error && <Alert>{error}</Alert>}
       <div className="w-full">
-        <Button className="w-full rounded-[20px] font-inter" size="lg">
-          Login
+        <Button
+          disabled={!email || !password}
+          className="w-full rounded-[20px]"
+          type="submit"
+          size="lg"
+        >
+          {loading ? "Logging in..." : "Login"}
         </Button>
-        <div className='block'> <GoogleButton /></div>
+        <div className="block">
+          <GoogleButton />
+        </div>
       </div>
     </form>
-  )
-}
+  );
+};
