@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+
 const PatientFilesTable = ({ patientFiles }) => {
   return (
     <div className="overflow-x-auto">
@@ -10,26 +13,37 @@ const PatientFilesTable = ({ patientFiles }) => {
           </tr>
         </thead>
         <tbody>
-          {patientFiles?.length > 0 ? (
-            patientFiles.map((file, index) => (
-              <tr
-                key={index}
-                className="cursor-pointer odd:bg-[#2AA0CD]/30 even:bg-[#2AA0CD]/20 hover:bg-[#2AA0CD]/40 transition-all"
-              >
-                <td className="p-2">{file.fileName}</td>
-                <td className="p-2">{file.id}</td>
-                <td className="p-2">
-                  {new Date(file.createdAt).toLocaleDateString()}
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td className="p-2" colSpan="3">
-                No files available.
-              </td>
-            </tr>
-          )}
+        {patientFiles?.length > 0 ? (
+  patientFiles.map((file, index) => (
+    <tr
+      key={index}
+      className="cursor-pointer odd:bg-[#2AA0CD]/30 even:bg-[#2AA0CD]/20 hover:bg-[#2AA0CD]/40 transition-all"
+    >
+      <td className="p-2">
+        <Link className="w-full flex flex-col" href={`/patient/viewRecords/${file.id}`}>
+          {file.fileName}
+        </Link>
+      </td>
+      <td className="p-2">
+        <Link className="w-full flex flex-col" href={{pathname: '/patient/viewRecords/',query: { id: file.id }}}>
+          {file.id}
+        </Link>
+      </td>
+      <td className="p-2">
+        <Link className="w-full flex flex-col" href={`/patient/viewRecords/${file.id}`}>
+          {new Date(file.createdAt).toLocaleDateString()}
+        </Link>
+      </td>
+    </tr>
+  ))
+) : (
+  <tr>
+    <td className="p-2" colSpan="3">
+      No files available.
+    </td>
+  </tr>
+)}
+
         </tbody>
       </table>
     </div>

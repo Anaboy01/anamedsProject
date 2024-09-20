@@ -88,47 +88,45 @@ const Page = () => {
         </div>
 
         <div className="overflow-x-auto">
-          <table className="min-w-full border-collapse border border-gray-200">
-            <thead>
-              <tr className="">
-                <th className="border border-gray-300 p-2 text-left">
-                  File name
-                </th>
-                <th className="border border-gray-300 p-2 text-left">ID</th>
-                <th className="border border-gray-300 p-2 text-left">Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="border border-gray-300 p-2">Covid</td>
-                <td className="border border-gray-300 p-2">1</td>
-                <td className="border border-gray-300 p-2">10/1/2023</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 p-2">2nd trimester</td>
-                <td className="border border-gray-300 p-2">2</td>
-                <td className="border border-gray-300 p-2">10/2/2023</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 p-2">Burn</td>
-                <td className="border border-gray-300 p-2">3</td>
-                <td className="border border-gray-300 p-2">10/3/2023</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 p-2">Pregnancy</td>
-                <td className="border border-gray-300 p-2">4</td>
-                <td className="border border-gray-300 p-2">10/4/2023</td>
-              </tr>
-              <tr>
-                <td className="border border-gray-300 p-2">
-                  Urinary tract infection
-                </td>
-                <td className="border border-gray-300 p-2">5</td>
-                <td className="border border-gray-300 p-2">10/5/2023</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+  <table className="min-w-full border-collapse border border-gray-200">
+    <thead>
+      <tr className="">
+        <th className="border border-gray-300 p-2 text-left">File name</th>
+        <th className="border border-gray-300 p-2 text-left">ID</th>
+        <th className="border border-gray-300 p-2 text-left">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="border border-gray-300 p-2">Covid</td>
+        <td className="border border-gray-300 p-2">1</td>
+        <td className="border border-gray-300 p-2">10/1/2023</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-300 p-2">2nd trimester</td>
+        <td className="border border-gray-300 p-2">2</td>
+        <td className="border border-gray-300 p-2">10/2/2023</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-300 p-2">Burn</td>
+        <td className="border border-gray-300 p-2">3</td>
+        <td className="border border-gray-300 p-2">10/3/2023</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-300 p-2">Pregnancy</td>
+        <td className="border border-gray-300 p-2">4</td>
+        <td className="border border-gray-300 p-2">10/4/2023</td>
+      </tr>
+      <tr>
+        <td className="border border-gray-300 p-2">Urinary tract infection</td>
+        <td className="border border-gray-300 p-2">5</td>
+        <td className="border border-gray-300 p-2">10/5/2023</td>
+      </tr>
+    
+    </tbody>
+  </table>
+</div>
+
       </div>
     </div>
   );
