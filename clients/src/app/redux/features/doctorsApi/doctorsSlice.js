@@ -120,7 +120,7 @@ export const updateDoctor = createAsyncThunk(
         "doctor/addPatientFile",
         async ({patientData, email}, thunkAPI) => {
           try {
-            return await doctorService.addPatientFile(patientData, email);
+            return await patientService.addPatientFile(patientData, email);
           } catch (error) {
             const message =
               (error.response &&
@@ -137,7 +137,7 @@ export const updateDoctor = createAsyncThunk(
         'doctor/requestAccessToPatientData',
         async(email, thunkApi) =>{
           try {
-            return await doctorService.requestAccessToPatientData(email)
+            return await patientService.requestAccessToPatientData(email)
           } catch (error) {
             const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
       
@@ -151,7 +151,7 @@ export const updateDoctor = createAsyncThunk(
         "doctor/accessPatientDataWithCode",
         async ({code, email}, thunkAPI) => {
           try {
-            return await doctorService.accessPatientDataWithCode(code, email);
+            return await patientService.accessPatientDataWithCode(code, email);
           } catch (error) {
             const message =
               (error.response &&
@@ -167,7 +167,7 @@ export const updateDoctor = createAsyncThunk(
         "doctor/getPatientFilesByDoctorId",
         async (email, thunkAPI) => {
           try {
-            return await doctorService.getPatientFilesByDoctorId( email);
+            return await patientService.getPatientFilesByDoctorId( email);
           } catch (error) {
             const message =
               (error.response &&
