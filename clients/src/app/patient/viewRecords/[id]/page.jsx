@@ -4,6 +4,8 @@ import Sidebar from "@/app/components/Sidebar/Sidebar";
 import { useState } from "react";
 import result from "../../../../../public/Frame 79 (1).png";
 import { useSelector } from "react-redux";
+import Layout from "@/app/components/Layout/Layout";
+
 
 const Page = ({ params }) => {
   const [startDate, setStartDate] = useState(null);
@@ -31,6 +33,7 @@ const Page = ({ params }) => {
   }
 
   return (
+    <Layout>
     <div className="flex flex-col md:flex-row min-h-screen text-[#3D3D3D] montserrat-font">
       <style jsx>{`
         @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
@@ -39,8 +42,8 @@ const Page = ({ params }) => {
         }
       `}</style>
 
-      <Sidebar />
-      <div className="mt-[150px] ml-[60px] flex flex-col gap-5">
+  
+      <div className="ml-[60px] flex flex-col gap-5">
         <div>
           <h1 className="text-[24px] font-medium uppercase">File Name</h1>
           <h3 className="text-[14px] text-[#888888] font-medium mb-1 leading-[21.94px]">
@@ -128,6 +131,7 @@ const Page = ({ params }) => {
         </div>
       </div>
     </div>
+    </Layout>
   );
 };
 
