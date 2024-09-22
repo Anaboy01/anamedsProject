@@ -6,10 +6,12 @@ import result from "../../../../../public/Frame 79 (1).png";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "@/app/components/Layout/Layout";
 import { getPatientFiles } from "@/app/redux/features/patientApi/patientSlice";
+import useRedirectLoggedPatient from "@/app/customHook/useRedirectPatient";
 
 
 
 const Page = ({ params }) => {
+  useRedirectLoggedPatient('/patient/login')
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 

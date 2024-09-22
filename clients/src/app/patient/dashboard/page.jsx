@@ -1,8 +1,10 @@
 'use client'
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
+import useRedirectLoggedPatient from "@/app/customHook/useRedirectPatient";
 
 export default function page() {
+  useRedirectLoggedPatient('/patient/login')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const initialState = {
     // firstName: user?.firstName || "",

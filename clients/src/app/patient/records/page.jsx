@@ -7,8 +7,10 @@ import CustomInput from "./customInputs";
 import { useSelector, useDispatch } from "react-redux"; 
 import { getPatientFiles } from "@/app/redux/features/patientApi/patientSlice";
 import PatientFilesTable from "@/app/components/PatientFilesTable/PatientFilesTable";// Adjust the import path
+import useRedirectLoggedPatient from "@/app/customHook/useRedirectPatient";
 
 const Page = () => {
+  useRedirectLoggedPatient('/patient/login')
   const dispatch = useDispatch(); 
 
   // Getting necessary states from Redux
