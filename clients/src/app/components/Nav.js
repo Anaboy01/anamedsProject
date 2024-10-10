@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-  import Logo from '../../../public/anameds.svg'
+  import Logo from '../../../public/Group.png'
 
 const Nav = () => {
   return (
