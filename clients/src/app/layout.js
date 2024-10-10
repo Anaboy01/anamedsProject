@@ -6,7 +6,7 @@ import ProviderWrapper from "./ProviderWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Anameds",
+  title: "CareChain",
   description: "Your Records",
 };
 
