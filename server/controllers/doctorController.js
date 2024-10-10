@@ -17,88 +17,76 @@ const cryptr = new Cryptr(process.env.CRYPTR_KEY)
 
 
 const registerDoctor = asyncHandler(async (req, res) => {
-      const { name, password, email, phone, specialty, licenseNumber, rank } = req.body;
-    
-      // Validation
-      if (!name || !email || !password) {
-        res.status(400).json({ error: 'Please fill in all the required fields' });
-        return;
-      }
-    
-      if (password.length < 6) {
-        res.status(400).json({ error: 'Password must be at least 6 characters long' });
-        return;
-      }
-    
-      try {
-        // Assuming you have a way to authenticate and identify the requesting hospital (e.g., through req.user)
-        const hospitalId = req.hospital._id;
-    
-        // Check if the hospital exists (optional, you can skip this check if you trust the provided hospitalId)
-        const hospital = await Hospital.findById(hospitalId);
-    
-        if (!hospital) {
-          res.status(404).json({ error: 'Hospital not found' });
-          return;
-        }
-    
-        // Check if the email is already in use by a doctor
-        const doctorExists = await Doctor.findOne({ 'contactInfo.email': email });
-    
-        if (doctorExists) {
-          res.status(400).json({ error: 'Email already in use' });
-          return;
-        }
-    
-        // Get user agent
-        const ua = parser(req.headers['user-agent']);
-        const doctorAgent = ua.ua;
-    
-        // Hash the password
-    
-        // Create a new hospital user
-        const doctor = await Doctor.create({
-          name,
-          password,
-          contactInfo: {
-            email: email,
-            phone: phone,
-          },
-          doctorAgent,
-          specialty: specialty,
-          licenseNumber,
-          hospitalId, // Set the hospitalId using the authenticated hospital's ID
-          rank
-        });
-    
-        // Generate Token
-        const token = generateToken(doctor._id);
-    
-        // Send HTTP-only cookie
-        res.cookie('token', token, {
-          path: '/',
-          httpOnly: true,
-          expires: new Date(Date.now() + 1000 * 86400), // 1 day
-          sameSite: 'none',
-          secure: true,
-        });
-    
-        // Return the doctor data in the response
-        res.status(201).json({
-          _id: doctor._id,
-          name: doctor.name,
-          contactInfo: doctor.contactInfo,
-          specialty,
-          licenseNumber,
-          hospitalId,
-          rank
-          // Add other properties you want to return here
-        });
-      } catch (error) {
-        console.error('Error registering doctor:', error);
-        res.status(500).json({ error: 'Internal server error' });
-      }
+  const { name, password, email, phone, specialty, licenseNumber, rank } = req.body;
+
+ 
+  if (!name || !email || !password) {
+    res.status(400).json({ error: 'Please fill in all the required fields' });
+    return;
+  }
+
+  if (password.length < 6) {
+    res.status(400).json({ error: 'Password must be at least 6 characters long' });
+    return;
+  }
+
+  try {
+
+    const hospitalId = req.hospital._id;
+
+  
+    const hospital = await Hospital.findById(hospitalId);
+
+    if (!hospital) {
+      res.status(404).json({ error: 'Hospital not found' });
+      return;
+    }
+
+  
+    const doctorExists = await Doctor.findOne({ 'contactInfo.email': email });
+
+    if (doctorExists) {
+      res.status(400).json({ error: 'Email already in use' });
+      return;
+    }
+
+
+    const ua = parser(req.headers['user-agent']);
+    const doctorAgent = ua.ua;
+
+  
+
+  
+    const doctor = await Doctor.create({
+      name,
+      password,
+      contactInfo: {
+        email: email,
+        phone: phone,
+      },
+      doctorAgent,
+      specialty: specialty,
+      licenseNumber,
+      hospitalId,
+      rank
     });
+
+    
+    res.status(201).json({
+      _id: doctor._id,
+      name: doctor.name,
+      contactInfo: doctor.contactInfo,
+      specialty,
+      licenseNumber,
+      hospitalId,
+      rank
+    });
+  } catch (error) {
+    console.error('Error registering doctor:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
     
 
 const loginDoctor = asyncHandler (async (req, res) => {
