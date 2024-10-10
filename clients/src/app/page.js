@@ -37,13 +37,13 @@ export default function Home() {
               CareChain
             </h1>
             <div className="z-[3] w-[80%]  relative flex items-center justify-between">
-              <div className="hello flex justify-center items-center gap-[15px] p-[10px] rounded-[40px]">
+              <div className="hello flex justify-center items-center gap-[15px]  p-[10px] pr-[15px]  rounded-[40px]">
                   <div className="w-[47px] h-[47px] flex items-center justify-center rounded-full bg-[#E7C2D4]">
                     <TbActivityHeartbeat size={25} color="#252B61"/>
                   </div>
                   <p className="text-[25px] font-normal text-[#C6DEFD] font-outfit">Best Health Records!</p>
               </div>
-              <div className="hi flex justify-center items-center gap-[15px] p-[10px] rounded-[40px]">
+              <div className="hi flex justify-center items-center gap-[15px] p-[10px] pr-[15px] rounded-[40px]">
               <div className="w-[47px] h-[47px] flex items-center justify-center rounded-full bg-[#A3DAC2] ">
                     <FaPeopleGroup size={25} color="#252B61"/>
                   </div>
