@@ -4,7 +4,6 @@ const path = require("path");
 
 const sendEmail = async (
   subject,
-  // message,
   send_to,
   sent_from,
   reply_to,
@@ -13,54 +12,54 @@ const sendEmail = async (
   link,
   requesterName
 ) => {
-  // Create Email Transporter
-  const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST,
-    port: 587,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-    tls: {
-      rejectUnauthorized: false,
-    },
-  });
+  try {
+    // Create Email Transporter
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: 587,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false,
+      },
+    });
 
-  const handlebarOptions = {
-    viewEngine: {
+    const handlebarOptions = {
+      viewEngine: {
+        extName: ".handlebars",
+        partialsDir: path.resolve("./views"),
+        defaultLayout: false,
+      },
+      viewPath: path.resolve("./views"),
       extName: ".handlebars",
-      partialsDir: path.resolve("./views"),
-      defaultLayout: false,
-    },
-    viewPath: path.resolve("./views"),
-    extName: ".handlebars",
-  };
+    };
 
-  transporter.use("compile", hbs(handlebarOptions));
+    transporter.use("compile", hbs(handlebarOptions));
 
-  // Option for sending email
-  const options = {
-    from: sent_from,
-    to: send_to,
-    replyTo: reply_to,
-    subject: subject,
-    // html: message,
-    template, // String
-    context: {
-      name,
-      link,
-      requesterName
-    },
-  };
+    // Options for sending email
+    const options = {
+      from: sent_from,
+      to: send_to,
+      replyTo: reply_to,
+      subject: subject,
+      template, // String representing template name
+      context: {
+        name,
+        link,
+        requesterName,
+      },
+    };
 
-  // send email
-  transporter.sendMail(options, function (err, info) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(info);
-    }
-  });
+    // Send the email
+    const info = await transporter.sendMail(options);
+    console.log('Email sent successfully: ', info);
+    return info;
+  } catch (err) {
+    console.error('Error sending email:', err);
+    throw new Error('Email could not be sent');
+  }
 };
 
 module.exports = sendEmail;

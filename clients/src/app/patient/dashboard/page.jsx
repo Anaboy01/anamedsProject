@@ -2,9 +2,12 @@
 import { useState } from "react";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import useRedirectLoggedPatient from "@/app/customHook/useRedirectPatient";
+import Layout from "@/app/components/Layout/Layout";
+
+
 
 export default function page() {
-  useRedirectLoggedPatient('/patient/login')
+  // useRedirectLoggedPatient('/patient/login')
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const initialState = {
     // firstName: user?.firstName || "",
@@ -22,13 +25,15 @@ export default function page() {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <div className="flex flex-col md:flex-row min-h-screen">
-      <Sidebar
+
+    <Layout>
+         <div className="flex flex-col md:flex-row min-h-screen">
+      {/* <Sidebar
         isSidebarOpen={isSidebarOpen}
         toggleSidebar={toggleSidebar}
         profile={profile}
       // router={location}
-      />
+      /> */}
       <div className="py-10 px-8 flex flex-col gap-x-10">
         <div>
           <p className="text-[24px] text-black font-medium">Hi Mary!</p>
@@ -46,5 +51,7 @@ export default function page() {
         </div>
       </div>
     </div>
+    </Layout>
+   
   )
 }

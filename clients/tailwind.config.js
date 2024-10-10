@@ -20,6 +20,7 @@ module.exports = {
         poppins: ['Poppins'],
         lato: ['Lato'],
         cormorantGaramond: [' Cormorant Garamond '],
+        outfit: ['Outfit']
        },
        backgroundSize: {
         auto: 'auto',

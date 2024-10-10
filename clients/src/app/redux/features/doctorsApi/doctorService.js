@@ -6,10 +6,7 @@ export const API_URL = `${BACKEND_URL}/api/doctors/`
 
 
 
-const registerDoctor = async (doctorData) =>{
-      const response = await axios.post(API_URL + 'registerDoctor', doctorData)
-      return response.data
-}
+
 
 
 const loginDoctor = async (doctorData) =>{
@@ -37,12 +34,7 @@ const doctorloginStatus = async () =>{
     };
 
 
- const getDoctorsByHospitalId = async () => {
-      const response = await axios.get(API_URL + "getDoctor");
-      console.log(response.data)
-      return response.data;
 
-    };
 
  const updateDoctor = async (doctorData) => {
       const response = await axios.patch(API_URL + "updateDoctor", doctorData);
@@ -55,17 +47,17 @@ const doctorloginStatus = async () =>{
       };
 
         
-    const requestAccessToPatientData = async (email) => {
+const requestAccessToPatientData = async (email) => {
         const response = await axios.post('http://localhost:5000/api/doctors/requestAccessToPatientData', email);
         return response.data.message;
-      };
+};
   
 
   
-      const accessPatientDataWithCode = async (code, email) => {
+const accessPatientDataWithCode = async (code, email) => {
         const response = await axios.post(API_URL + `accessPatientDataWithCode/${email}`, code);
         return response.data;
-      };
+};
   
 
    const getPatientFilesByDoctorId = async (email) => {
@@ -82,8 +74,6 @@ const doctorService = {
       doctorloginStatus,
       getDoctor,
       updateDoctor,
-      registerDoctor,
-      getDoctorsByHospitalId,
       addPatientFile,
       requestAccessToPatientData,
       accessPatientDataWithCode,

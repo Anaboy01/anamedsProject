@@ -15,20 +15,9 @@ const initialState = {
       
 }
 
-//REGISTER Patient
 
-export const registerDoctor = createAsyncThunk(
-  'doctor/registerDoctor',
-  async (doctorData, thunkAPI) => {
-        try {
-              return await doctorService.registerDoctor(doctorData)
-        } catch (error) {
-              const message = (error.response && error.response.data && error.response.data) || error.message || error.toString()
 
-              return thunkAPI.rejectWithValue(message)
-        }
-  }
-)
+
 
 
 // Login Patient
@@ -89,18 +78,7 @@ export const getDoctor = createAsyncThunk(
         }
       }
     )
-export const getDoctorsByHospitalId = createAsyncThunk(
-      'doctor/getDoctorsByHospitalId',
-      async(_, thunkApi) =>{
-        try {
-          return await doctorService.getDoctorsByHospitalId()
-        } catch (error) {
-          const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-    
-          return thunkApi.rejectWithValue(message)
-        }
-      }
-    )
+
 
     //UPDATE USER
 export const updateDoctor = createAsyncThunk(
@@ -197,24 +175,7 @@ const doctorsSlice = createSlice({
       },
       extraReducers: (builder) => {
           builder
-          .addCase(registerDoctor.pending, (state, action) => {
-            state.isLoading = true
-      })
-      .addCase(registerDoctor.fulfilled, (state, action) => {
-            state.isLoading = false
-            state.isSuccess = true
-            state.doctor = action.payload;
-            console.log(action.payload)
-            toast.success('Registration Succesful')
-      })
-      .addCase(registerDoctor.rejected, (state, action) => {
-            state.isLoading = false
-            state.isError = true
-            state.isSuccess = false
-            state.message = action.payload
-            state.doctor = null;
-            toast.error(action.payload)
-      })
+         
     
                 //Login User
                 .addCase(loginDoctor.pending, (state) => {
@@ -297,21 +258,7 @@ const doctorsSlice = createSlice({
                 toast.error(action.payload)
               })
 
-              //GetDocsById
-          .addCase(getDoctorsByHospitalId.pending, (state) => {
-                state.isLoading = true;
-              })
-              .addCase(getDoctorsByHospitalId.fulfilled, (state, action) => {
-                state.isLoading = false;
-                state.isSuccess = true;
-                state.doctors = action.payload;
-              })
-              .addCase(getDoctorsByHospitalId.rejected, (state, action) => {
-                state.isLoading = false;
-                state.isError = true;
-                state.message = action.payload;
-                toast.error(action.payload)
-              })
+          
     
            // UPDATE USER
            .addCase(updateDoctor.pending, (state) => {

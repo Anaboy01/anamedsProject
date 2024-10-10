@@ -144,7 +144,6 @@ const sendVerificationEmail = asyncHandler(async (req, res) => {
   // Construct Verification Url
   const verificationUrl = `${process.env.FRONTEND_URL}/verify/${verificationToken}`;
 
-
   const emailName = `${patient.name.firstName} ${patient.name.lastName}`;
 
   const subject = "Verify Your Account - AUTH:Z";
@@ -282,7 +281,7 @@ const loginPatient = asyncHandler(async (req, res) => {
       role,
       photo,
       patient_file,
-      token
+      token,
     });
   } else {
     res.status(500);
@@ -352,7 +351,7 @@ const loginWithCode = asyncHandler(async (req, res) => {
 
   // const loginCode = req.body.lo
 
-  console.log(loginCode)
+  console.log(loginCode);
 
   const patient = await Patient.findOne({ "contactInfo.email": email });
 
@@ -375,7 +374,7 @@ const loginWithCode = asyncHandler(async (req, res) => {
 
   const decryptedLoginCode = cryptr.decrypt(patientToken.lToken);
 
-  console.log(decryptedLoginCode)
+  console.log(decryptedLoginCode);
 
   if (loginCode !== decryptedLoginCode) {
     res.status(400);
@@ -664,8 +663,8 @@ const sendAccessCodeToPatient = async (
   const template = "accessCode";
   const name = patientName; // Use the patient's name
   const link = accessCode;
-  const requesterName = doctorName; 
-  console.log(requesterName)// Include the doctor's name in the email
+  const requesterName = doctorName;
+  console.log(requesterName); // Include the doctor's name in the email
 
   try {
     // Pass the doctor's name as part of the email details (adjust template to use this if necessary)
@@ -677,7 +676,7 @@ const sendAccessCodeToPatient = async (
       template,
       name,
       link,
-      requesterName 
+      requesterName
     );
   } catch (error) {
     console.error("Email not sent:", error);
@@ -690,8 +689,6 @@ const requestAccessToPatientData = asyncHandler(async (req, res) => {
 
   // Get the logged-in doctor's ID from the authentication
   const loggedInDoctorId = req.doctor._id;
-
- 
 
   // Find the doctor using the logged-in doctor's ID
   const doctor = await Doctor.findById(loggedInDoctorId);
@@ -729,11 +726,17 @@ const requestAccessToPatientData = asyncHandler(async (req, res) => {
   const patientName = `${lastName} ${firstName}`;
 
   // Pass the doctor's name when sending the email
-  await sendAccessCodeToPatient(patientEmail, patientName, accessCode, doctorName);
+  await sendAccessCodeToPatient(
+    patientEmail,
+    patientName,
+    accessCode,
+    doctorName
+  );
 
-  res.status(200).json({ message: "Access code sent to the patient successfully." });
+  res
+    .status(200)
+    .json({ message: "Access code sent to the patient successfully." });
 });
-
 
 // const sendAccessCodeToPatient = async (
 //   patientEmail,
@@ -765,8 +768,7 @@ const requestAccessToPatientData = asyncHandler(async (req, res) => {
 // };
 
 // const requestAccessToPatientData = asyncHandler(async (req, res) => {
-//   const patientEmail = req.body.email; 
-
+//   const patientEmail = req.body.email;
 
 //   const patient = await Patient.findOne({ "contactInfo.email": patientEmail });
 
@@ -775,16 +777,12 @@ const requestAccessToPatientData = asyncHandler(async (req, res) => {
 //     throw new Error("Patient not found.");
 //   }
 
- 
 //   const accessCode = generateAccessCode();
 
-  
 //   const encryptedAccessCode = cryptr.encrypt(accessCode);
 
- 
 //   const expirationTime = new Date();
 //   expirationTime.setHours(expirationTime.getHours() + 3);
-
 
 //   patient.accessCode = encryptedAccessCode;
 //   patient.accessCodeTimestamp = expirationTime;
@@ -794,8 +792,8 @@ const requestAccessToPatientData = asyncHandler(async (req, res) => {
 //   const firstName = patient.name.firstName;
 
 //   const patientName = `${lastName} ${firstName}`;
- 
-//   await sendAccessCodeToPatient(patientEmail, patientName, accessCode); // Call 
+
+//   await sendAccessCodeToPatient(patientEmail, patientName, accessCode); // Call
 
 //   res
 //     .status(200)
@@ -843,6 +841,8 @@ const accessPatientDataWithCode = asyncHandler(async (req, res) => {
     patient.accessCode = null;
     patient.accessCodeTimestamp = null;
     await patient.save();
+
+    console.log(accessCode);
 
     res.status(200).json({
       _id,
@@ -903,13 +903,11 @@ const addPatientFile = asyncHandler(async (req, res, next) => {
       ...req.body,
     };
 
-  
     patient.patient_files.push(newPatientFile);
 
-    
     await patient.save();
 
-    return res.status(201).json(newPatientFile); 
+    return res.status(201).json(newPatientFile);
   } catch (error) {
     return next(error);
   }
@@ -1014,13 +1012,9 @@ const getPatientFiles = asyncHandler(async (req, res) => {
 
   // Check if the patient exists
   if (patient) {
-    const { patient_files, name } = patient; 
-    
-  
+    const { patient_files, name } = patient;
 
-    
-    res.status(200).json({patient_files, name
-    });
+    res.status(200).json({ patient_files, name });
   } else {
     res.status(404);
     throw new Error("User not found");
@@ -1049,5 +1043,5 @@ module.exports = {
   getPatientFilesByHospitalId,
   getPatientFilesByDoctorId,
   getPatientFileById,
-  getPatientFiles
+  getPatientFiles,
 };
