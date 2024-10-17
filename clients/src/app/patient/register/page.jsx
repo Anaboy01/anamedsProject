@@ -1,4 +1,4 @@
-"use client"; // This is crucial for client-side features like useRouter
+'use client'// This is crucial for client-side features like useRouter
 
 import { useEffect, useState } from "react";
 import Image from "next/image";

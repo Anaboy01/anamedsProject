@@ -5,7 +5,7 @@ import { Form } from "./form";
 import Nav from "../../components/Nav";
 import Inter from '../../../../public/userinter.svg'
 
-export default function page() {
+export default function Page() {
   return (
     <main>
       <Nav />

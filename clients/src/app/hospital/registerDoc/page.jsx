@@ -5,7 +5,7 @@ import { Form } from "./form";
 import Link from "next/link";
 import { BsPersonPlus } from "react-icons/bs";
 
-const page = () => {
+const Page = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const initialState = {
@@ -48,4 +48,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
