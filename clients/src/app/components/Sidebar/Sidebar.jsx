@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { IoMdSettings } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
-import Logo from '../../../../public/anameds.svg'
+import Logo from '../../../../public/careChainLogo.png'
 import Image from "next/image";
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
@@ -59,7 +59,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
       <div className="fixed inset-0 md:relative md:w-1/5 bg-[#2AA0CD] p-4 flex flex-col space-y-2 z-20 border-r border-t font-inter">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-[20px] my-3">
-            <Image src={Logo} width={200} alt="Anameds Logo" />
+            <Image src={Logo} width={200}  alt="Care Chain Logo" />
             <div>
               {/* <p className="text-[18px]">
                 {profile.firstName} {profile.lastName}

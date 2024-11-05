@@ -2,62 +2,42 @@
 import Image from "next/image";
 import Sidebar from "@/app/components/Sidebar/Sidebar";
 import { useEffect, useState } from "react";
-import result from "../../../../../public/Frame 79 (1).png";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "@/app/components/Layout/Layout";
 import { getPatientFiles } from "@/app/redux/features/patientApi/patientSlice";
 import useRedirectLoggedPatient from "@/app/customHook/useRedirectPatient";
-
-
+import { useRouter } from "next/router";
 
 const Page = ({ params }) => {
-  useRedirectLoggedPatient('/patient/login')
+  // Redirects if user is not logged in
+  useRedirectLoggedPatient('/patient/login');
+
+  // State management for start and end dates
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
+  // Dispatch and selector setup for Redux
   const dispatch = useDispatch();
+  const { isLoading, patient } = useSelector((state) => state.patient);
 
-  // Destructure the `id` from `params`
+  // Extract the `id` from params (or fallback to router)
   const { id } = params;
 
-  // Accessing the patient files from Redux
-  const { isLoading, isLoggedIn, isSuccess, message, patient } = useSelector(
-    (state) => state.patient
-  );
-
   useEffect(() => {
+    // Fetch patient files on component mount
     dispatch(getPatientFiles());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (patient) {
-      console.log("Patient files:", patient.patient_files);
-      console.log("First name:", patient.name?.firstName);
-      console.log("Last name:", patient.name?.lastName);
-    }
-  }, [patient]);
+  // Find the specific file by `id` after patient data is fetched
+  const fileDetails = patient?.patient_files?.find((file) => file.id === id);
 
-  console.log(patient)
-
-  // Find the specific file by ID
-  const fileDetails = patient?.patient_files?.find(
-    (file) => file.id === id
-  );
-
-
-  console.log(fileDetails)
-  const handleClearDates = () => {
-    setStartDate(null);
-    setEndDate(null);
-  };
-
-  if (!fileDetails || isLoading) {
-    return <div>Loading...</div>;
-  }
+  // Loading or error message
+  if (isLoading) return <div>Loading...</div>;
+  if (!fileDetails) return <div>File not found</div>;
 
   return (
     <Layout>
-      <div className="flex flex-col md:flex-row min-h-screen text-[#3D3D3D]  ">
+      <div className="flex flex-col md:flex-row min-h-screen text-[#3D3D3D]">
 
         <div className="ml-[60px] flex flex-col gap-[50px]">
           <div className="flex flex-col gap-[6px]">
@@ -80,28 +60,22 @@ const Page = ({ params }) => {
                 Dr. {fileDetails.doctorName}
               </span>
             </h3>
-
-            
           </div>
 
           <div className="test overflow-x-auto flex flex-col gap-[15px]">
-          <h1 className="text-[24px] font-montserrat font-medium">Files</h1>
+            <h1 className="text-[24px] font-montserrat font-medium">Files</h1>
             <table className="min-w-full border-collapse border border-gray-200">
               <thead>
                 <tr>
                   <th className="border border-gray-300 p-2 font-montserrat font-medium text-[24px] text-left">Tests</th>
-                  <th className="border border-gray-300 p-2 font-montserrat font-medium text-[24px] text-left">
-                    Results
-                  </th>
+                  <th className="border border-gray-300 p-2 font-montserrat font-medium text-[24px] text-left">Results</th>
                 </tr>
               </thead>
               <tbody>
                 {fileDetails.tests.map((test) => (
                   <tr key={test.id}>
                     <td className="border border-gray-300 font-montserrat font-normal text-[18px] p-2">{test.test}</td>
-                    <td className="border border-gray-300 font-montserrat font-normal text-[18px] p-2">
-                      {test.testResults}
-                    </td>
+                    <td className="border border-gray-300 font-montserrat font-normal text-[18px] p-2">{test.testResults}</td>
                   </tr>
                 ))}
               </tbody>
@@ -112,19 +86,21 @@ const Page = ({ params }) => {
             <h1 className="text-[24px] font-montserrat font-medium">Prescription</h1>
             <div className="flex flex-col gap-[10px]">
               {fileDetails.prescriptions.map((prescription) => (
-                <p className="text-[#888888] font-poppins font-normal text-[16px] capitalize " key={prescription}>{prescription}</p>
+                <p className="text-[#888888] font-poppins font-normal text-[16px] capitalize" key={prescription}>
+                  {prescription}
+                </p>
               ))}
             </div>
           </div>
 
-          <div lassName="flex flex-col gap-[10px]">
+          <div className="flex flex-col gap-[10px]">
             <h1 className="text-[24px] font-montserrat font-medium">Diagnosis</h1>
-            <p className="text-[#888888] font-poppins font-normal text-[16px] ">{fileDetails.diagnosis}</p>
+            <p className="text-[#888888] font-poppins font-normal text-[16px]">{fileDetails.diagnosis}</p>
           </div>
 
-          <div lassName="flex flex-col gap-[10px]">
+          <div className="flex flex-col gap-[10px]">
             <h1 className="text-[24px] font-montserrat font-medium">Note</h1>
-            <p className="text-[#888888] font-poppins font-normal text-[16px] ">{fileDetails.note}</p>
+            <p className="text-[#888888] font-poppins font-normal text-[16px]">{fileDetails.note}</p>
           </div>
 
           <div>
@@ -135,11 +111,11 @@ const Page = ({ params }) => {
                   src={image}
                   width={311}
                   height={189}
-                  alt="An image"
+                  alt="Patient image"
                 />
               ))}
             </div>
-            <div className=" w-[311px] h-[246px] mt-4 ">
+            <div className="w-[311px] h-[246px] mt-4">
               <video controls className="rounded-md">
                 <source src={fileDetails.videoUrl} type="video/mp4" />
                 Your browser does not support the video tag.

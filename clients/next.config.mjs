@@ -1,9 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    reactStrictMode: true,
-    images: {
-      domains: ['res.cloudinary.com'], // Add Cloudinary as an allowed domain
-    },
+  output: "export",
+  trailingSlash: "true",
+  reactStrictMode: true,
+  images: {
+    domains: ['res.cloudinary.com'], 
+  },
 };
 
 export default nextConfig;

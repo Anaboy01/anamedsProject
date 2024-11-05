@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-  import Logo from '../../../public/Group.png'
+  import Logo from '../../../public/careChainLogo.png'
 
 const Nav = () => {
   return (
@@ -8,7 +8,7 @@ const Nav = () => {
       <Image 
       src={Logo}
       width={200}
-      alt="Anameds Logo"
+      alt="CareChain Logo"
       />
     </div>
   );

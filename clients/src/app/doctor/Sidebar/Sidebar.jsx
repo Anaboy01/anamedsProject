@@ -6,7 +6,7 @@ import { GrDocumentText } from "react-icons/gr";
 import { usePathname } from "next/navigation";
 import { IoMdSettings } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa";
-import Logo from '../../../../public/anameds.svg'
+import Logo from '../../../../public/titleStuff.png'
 import Image from "next/image";
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar, profile, router }) => {
