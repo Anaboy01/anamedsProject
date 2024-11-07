@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "next/image"
 import Nav from "./components/Nav";
 import heroImg from "../../public/Teamwork.png";
 import { TbActivityHeartbeat } from "react-icons/tb";
@@ -31,7 +31,7 @@ export default function Home() {
       </div> */}
 
       <div className="flex items-center justify-center  p-[70px] select-none ">
-        <div className=" flex flex-col items-center gap-[212px] p-[46px]  font-bold blueContainer bg-[#2AA0CD] h-[80vh] w-[90vw] rounded-[45px]  ">
+        <div className=" flex flex-col items-center gap-[212px] p-[46px]  font-bold blueContainer bg-[#2AA0CD] h-auto w-[90vw] rounded-[45px]  ">
           <div className="w-full flex flex-col items-center gap-[36px]">
             <h1 className="font-outfit text-[200px] text-[#F5F5F5]">
               CareChain
