@@ -2,12 +2,16 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import ProviderWrapper from "./ProviderWrapper";
+import Logo from '../../public/titleStuff.png'
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Anameds",
+  title: "CareChain",
   description: "Your Records",
+  icons: {
+    icon: "/titleStuff.png",
+  },
 };
 
 // export default function RootLayout({ children }) {

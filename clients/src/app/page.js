@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "next/image"
 import Nav from "./components/Nav";
 import heroImg from "../../public/Teamwork.png";
 import { TbActivityHeartbeat } from "react-icons/tb";
@@ -31,19 +31,19 @@ export default function Home() {
       </div> */}
 
       <div className="flex items-center justify-center  p-[70px] select-none ">
-        <div className=" flex flex-col items-center gap-[212px] p-[46px]  font-bold blueContainer bg-[#2AA0CD] h-[80vh] w-[90vw] rounded-[45px]  ">
+        <div className=" flex flex-col items-center gap-[212px] p-[46px]  font-bold blueContainer bg-[#2AA0CD] h-auto w-[90vw] rounded-[45px]  ">
           <div className="w-full flex flex-col items-center gap-[36px]">
             <h1 className="font-outfit text-[200px] text-[#F5F5F5]">
               CareChain
             </h1>
             <div className="z-[3] w-[80%]  relative flex items-center justify-between">
-              <div className="hello flex justify-center items-center gap-[15px] p-[10px] rounded-[40px]">
+              <div className="hello flex justify-center items-center gap-[15px]  p-[10px] pr-[15px]  rounded-[40px]">
                   <div className="w-[47px] h-[47px] flex items-center justify-center rounded-full bg-[#E7C2D4]">
                     <TbActivityHeartbeat size={25} color="#252B61"/>
                   </div>
                   <p className="text-[25px] font-normal text-[#C6DEFD] font-outfit">Best Health Records!</p>
               </div>
-              <div className="hi flex justify-center items-center gap-[15px] p-[10px] rounded-[40px]">
+              <div className="hi flex justify-center items-center gap-[15px] p-[10px] pr-[15px] rounded-[40px]">
               <div className="w-[47px] h-[47px] flex items-center justify-center rounded-full bg-[#A3DAC2] ">
                     <FaPeopleGroup size={25} color="#252B61"/>
                   </div>

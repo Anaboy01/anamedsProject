@@ -3,7 +3,7 @@ import Sidebar from '@/app/components/Sidebar/Sidebar'
 import React, { useState } from 'react'
 import {Form} from './form'
 
-const page = () => {
+const Page = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const initialState = {
@@ -42,4 +42,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
